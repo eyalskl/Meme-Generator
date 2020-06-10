@@ -14,6 +14,16 @@
 </head>
 
 <body onload="onInit()">
+    <datalist id="keywords">
+        <option value="Popular">
+        <option value="Men">
+        <option value="Laugh">
+        <option value="Baby">
+        <option value="Smile">
+        <option value="Success">
+        <option value="Angry">
+    </datalist>
+
 
     <!-- NAV BAR SECTION -->
     <nav class="nav">
@@ -37,7 +47,6 @@
     </nav>
 
 
-
     <!-- SAVED MEMES SECTION -->
     <section class="memes container">
         <h1>My saved Memes</h1>
@@ -45,8 +54,6 @@
 
         </div>
     </section>
-
-
 
 
     <!-- MEME EDITOR SECTION -->
@@ -66,8 +73,8 @@
             <div class="text-edit">
                 <button onclick="onChangeFontSize(5)" title="Increase font size">A+</button>
                 <button onclick="onChangeFontSize(-5)" title="Decrease font size">A-</button>
-                <button onclick="onChangeLineHeight(-10)" title="Move Line Up">A🠝</button>
-                <button onclick="onChangeLineHeight(+10)" title="Move Line Down">A🠟</button>
+                <button onclick="onChangeLineHeight(-10)" title="Move Line Up">A&#x2B06;</button>
+                <button onclick="onChangeLineHeight(+10)" title="Move Line Down">A&#x2B07;</button>
             </div>
             <div class="font-edit">
                 <select name="fontFamily" onchange="onSetFontFamily(this.value)" style="font-family: Impact;">
@@ -107,9 +114,15 @@
     </section>
 
 
-
     <!-- MEME GALLERY SECTION -->
-    <section class="meme-gallery container flex wrap"></section>
+    <section class="meme-gallery container flex wrap">
+        <div class="search-bar flex align-center">
+            <input type="search" list="keywords" name="keyword" placeholder="Search by keywords..."
+                oninput="onSetFilterBy(this.value)">
+            <span class="growing-keywords"></span>
+        </div>
+        <div class="gallery"></div>
+    </section>
 
 
 

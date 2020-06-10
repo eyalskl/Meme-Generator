@@ -3,16 +3,13 @@
 var gElCanvas;
 var gCtx;
 
-// const TOP = 50;
-// const BOTTOM = gElCanvas.height - 50;
-
-
-
 function onInit() {
     gSavedMemes = loadFromStorage(KEY);
     if (!gSavedMemes) gSavedMemes = [];
-    _createImgs();
+    createImgs();
+    gKeywords = createKeywordMap();
     renderGallery();
+    renderKeywords();
     gElCanvas = document.querySelector('#canvas');
     gCtx = gElCanvas.getContext('2d');
     resizeCanvas(); // sets the canvas size according to it's container
@@ -121,7 +118,7 @@ function onChangeLineHeight(diff) {
     drawMeme(meme.selectedImgId)
 }
 
-function onSetFontColor(color) {
+function onSetFontColor(color, elKeyword) {
     setFontColor(color);
     renderMeme();
 }
@@ -162,7 +159,7 @@ function setInputText() {
 }
 
 function onDownloadMeme(elLink) {
-    const data = gElCanvas.toDataURL();
+    const data = gElCanvas.toDataURL("image/jpeg");
     console.log('data:', data)
     elLink.href = data;
     elLink.download = 'New_Meme';
@@ -186,4 +183,9 @@ function renderSavedMemes() {
 function setBtnMode(elAlignBtn) {
     document.querySelectorAll('.align-text button').forEach(btn => btn.classList.remove('mode'));
     elAlignBtn.classList.add('mode');
+}
+
+function onSetFilterBy(keyword) {
+    setFilterBy(keyword);
+    renderGallery();
 }
