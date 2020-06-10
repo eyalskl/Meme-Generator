@@ -1,8 +1,11 @@
 'use strict';
 
+const KEY = 'savedMemes'
+
 var gKeywords = { 'happy': 12, 'funny puk': 1 }
 
 var gImgs = [];
+var gSavedMemes;
 
 var gElCanvas = document.querySelector('#canvas');
 
@@ -14,19 +17,23 @@ function resetMeme() {
     gMeme.lines = [
         {
             txt: 'insert text here',
-            size: 40,
+            font: 'impact',
+            size: 30,
             align: 'center',
             color: 'white',
             strokeColor: 'black',
-            lineHeight: 50
+            y: 50,
+            x: gElCanvas.width /2
         },
         {
             txt: 'insert text here',
-            size: 40,
+            font: 'impact',
+            size: 30,
             align: 'center',
             color: 'white',
             strokeColor: 'black',
-            lineHeight: gElCanvas.height - 50
+            y: gElCanvas.height - 50,
+            x: gElCanvas.width /2
         }
     ]
 }
@@ -64,8 +71,28 @@ function getImgs() {
     return gImgs;
 }
 
+function getSavedMemes() {
+    return gSavedMemes;
+}
+
 function setLineText(lineText) {
     gMeme.lines[gMeme.selectedLineIdx].txt = lineText;
+}
+
+function setFontColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].color = color;
+}
+
+function setFontSize(fontSize) {
+    gMeme.lines[gMeme.selectedLineIdx].size = fontSize;
+}
+
+function setFontFamily(fontFamily) {
+    gMeme.lines[gMeme.selectedLineIdx].font = fontFamily;
+}
+
+function setAlignText(alignDir) {
+    gMeme.lines[gMeme.selectedLineIdx].align = alignDir;
 }
 
 function setMeme(imgId) {
@@ -75,15 +102,40 @@ function setMeme(imgId) {
 }
 
 function changeFontSize(diff) {
+    if (gMeme.lines[gMeme.selectedLineIdx].size <= 5 && diff < 0) return
     gMeme.lines[gMeme.selectedLineIdx].size += diff;
 }
 
 function changeLineHeight(diff) {
     const currLine = gMeme.lines[gMeme.selectedLineIdx];
-    currLine.lineHeight += diff;
+    currLine.y += diff;
 }
 
 function switchLine() {
     gMeme.selectedLineIdx++
     if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0;
+}
+
+function removeLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+    gMeme.selectedLineIdx = 0;
+}
+
+function addLine() {
+    gMeme.lines.push({
+        txt: 'insert text here',
+        font: 'impact',
+        size: 30,
+        align: 'center',
+        color: 'white',
+        strokeColor: 'black',
+        y: gElCanvas.height / 2,
+        x: gElCanvas.width / 2
+    });
+    gMeme.selectedLineIdx = gMeme.lines.length - 1;
+}
+
+function saveMeme(savedMeme) {
+    gSavedMemes.push(savedMeme)
+    saveToStorage(KEY, gSavedMemes)
 }

@@ -4,8 +4,8 @@
 .canvas-container {
     height: 500px;
     width: 500px;
-    margin-inline-end: 1rem;
     margin: 0 auto;
+    margin-inline-end: 1rem;
 }
 
 .meme-editor {
@@ -15,6 +15,7 @@
     box-sizing: content-box;
     padding: 20px;
     background-color: aliceblue;
+    box-shadow: 4px 4px 4px black;
 }
 
 .edit-tools {
@@ -25,25 +26,55 @@
 
 .edit-tools input[name="lineText"] {
     margin-top: 1.6rem;
-    padding: 0.5rem;
+    padding: 0.7rem;
     margin: 10px auto;
-}
-
-.switch-lines-btn {
-    transform: rotate(90deg);
-    height: 2rem;
-    width: 2rem;
+    box-shadow: 2px 2px 4px black;
+    outline: none;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 
 .edit-tools button {
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.384);
+    box-shadow: 2px 2px 4px black;
 }
 
-.text-edit button {
+.switch-lines-btn {
+    transform: rotate(90deg);
+    height: 2.6rem;
+    width: 2.6rem;
+    font-size: 1.2rem;
+    margin-inline-start: .5rem;
+}
+
+.lines-add-remove button {
+    background-color: #000;
+    color: white
+}
+
+.text-edit button, .align-text button, .lines-add-remove button {
     height: 2rem;
     width: 2rem;
     border-radius: 5px;
+    margin: 5px 0.2rem;
+}
+
+.font-edit select {
+    margin-top: 0.8rem;
+    padding: 0.5rem;
+}
+
+.align-text {
+    font-size: 1.6rem;
+}
+
+.align-text button {
+    transition: .3s;
+}
+
+.align-text button.mode {
+    background-color: rgb(129, 188, 255);
+    transform: scale(1.1);
 }
 
 a.download-meme {
@@ -54,6 +85,7 @@ a.download-meme {
     padding: 0.5rem;
     font-family: 'Days One', sans-serif;
     margin-top: 1rem;
+    box-shadow: 2px 2px 2px black;
 }
 
 

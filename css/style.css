@@ -10,13 +10,31 @@ html {
 
 body {
     margin: 0;
-    background-color: rgb(240, 240, 240);
+    background: url('../icons/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
 
 button {
     cursor: pointer;
     outline: none;
     font-family: 'Days One', sans-serif;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    outline: none;
+	border: none;
+	width: 1.5em;
+    height: 1.5em;
+    cursor: pointer;
+    background-color: transparent;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+    border-radius: 50%;
 }
 
 /* font-family: 'Black Ops One', cursive;
@@ -31,7 +49,7 @@ a {
 /* NAV */
 
 .nav {
-    background-color: rgba(255, 255, 255, 0.781);
+    background-color: rgba(230, 230, 230, 0.781);
     border-bottom: 1px solid #000;
     box-shadow: 0px 6px 8px 0px black;
     font-family: 'Days One', sans-serif;
@@ -40,6 +58,15 @@ a {
 .logo {
     font-family: 'Days One', sans-serif;
     font-size: 2.5rem;
+    color: rgb(161, 161, 161);
+    transition: .7s;
+}
+.logo:hover {
+    transform: scale(1.2);
+}
+
+.logo span {
+    color: rgb(163, 163, 255);
 }
 
 .main-nav {
@@ -55,15 +82,26 @@ a {
 }
 
 .main-nav li a {
-    background-color: rgb(163, 163, 255);
+    background-color: rgba(163, 163, 255, 0.473);
+    color: black;
+    font-size: 1rem;
+    text-transform: uppercase;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
-    width: 100px;
+    height: 120px;
+    width: 120px;
+    transition: background-color .7s, color .7s;
+}
+
+
+.main-nav li a:hover {
+    background-color: rgba(163, 163, 255);
+    color: white;
 }
 
 /* HELPERS */
+
 
 .container {
     max-width: 980px;
@@ -86,12 +124,20 @@ a {
     justify-content: space-around;
 }
 
+.flex.justify-center {
+    justify-content: space-center;
+}
+
 .flex.align-center {
     align-items: center;
 }
 
 .clean-list {
     list-style: none;
+}
+
+.hide {
+ display: none;
 }
 
 /* RESPOSIVENESS */
@@ -109,6 +155,7 @@ a {
     .main-nav li a {
         height: 75px;
         width: 75px;
+        font-size: 0.75rem;
     }
     .logo {
         font-size: 1.5rem;

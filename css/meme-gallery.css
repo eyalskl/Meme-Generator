@@ -4,13 +4,20 @@
     margin-top: 20px;
 }
 
-.meme-gallery img {
-    width: 250px;
-    height: 250px;
+.meme-gallery img, .saved-memes-container img {
+    width: 200px;
+    height: 200px;
     margin: .5rem;
     border: 1px solid black;
-    cursor: pointer;
     transition: opacity .3s;
+}
+
+.meme-gallery img {
+    cursor: pointer;
+}
+
+.memes {
+    text-align: center;
 }
 
 .meme-gallery img:hover {
@@ -19,8 +26,8 @@
 
 @media (max-width: 800px) {
     .meme-gallery img {
-        width: 90px;
-        height: 90px;
+        width: 200px;
+        height: 200px;
         margin: .25rem;
     }
 }
