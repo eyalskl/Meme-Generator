@@ -58,6 +58,13 @@
     padding-inline-start: 4rem;
 }
 
+.memes h2 {
+    font-family: 'Days One', sans-serif;
+    text-transform: uppercase;
+    text-decoration: underline;
+    cursor: default;
+}
+
 .meme-gallery img:hover {
     opacity: 0.7;
     outline: 3px double white;
