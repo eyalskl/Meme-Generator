@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/meme-editor.css">
+    <link rel="stylesheet" href="css/meme-gallery.css">
 </head>
 
 <body onload="onInit()">
@@ -30,8 +32,17 @@
         </div>
     </nav>
 
-    <section class="meme-editor"></section>
-    <section class="meme-gallery"></section>
+    <section class="meme-editor container flex">
+        <div class="editor-container">
+            <canvas id="editor" width="500" height="500"> </canvas>
+        </div>
+        <div class="edit-tools">
+            <input type="text" name="lineText" placeholder="Insert Text Here" oninput="onSetLineText(this.value)">
+        </div>
+    </section>
+
+    <section class="meme-gallery container flex">
+    </section>
 
 
 
@@ -44,6 +55,7 @@
     <script src="js/util-service.js"></script>
     <script src="js/storage-service.js"></script>
     <script src="js/meme-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>
 </body>
 

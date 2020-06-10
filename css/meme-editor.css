@@ -1,0 +1,16 @@
+/* MEME EDITOR */
+
+.meme-editor {
+    margin-top: 1.6rem;
+    border: 2px solid black;
+}
+
+.edit-tools {
+    text-align: center;
+    flex: 1;
+}
+
+.edit-tools input[name="lineText"] {
+    margin-top: 1.6rem;
+    padding: 0.8rem;
+}
