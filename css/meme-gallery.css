@@ -1,18 +1,26 @@
 /* MEME GALLERY */
 
-/* .meme-gallery {
-
-} */
+.meme-gallery {
+    margin-top: 20px;
+}
 
 .meme-gallery img {
     width: 250px;
     height: 250px;
-    margin: 20px;
+    margin: .5rem;
     border: 1px solid black;
     cursor: pointer;
     transition: opacity .3s;
 }
 
 .meme-gallery img:hover {
-    opacity: 0.8;
+    opacity: 0.7;
+}
+
+@media (max-width: 800px) {
+    .meme-gallery img {
+        width: 90px;
+        height: 90px;
+        margin: .25rem;
+    }
 }

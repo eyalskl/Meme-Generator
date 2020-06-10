@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme Generator</title>
+    <script src="https://kit.fontawesome.com/f4b51a9e99.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Days+One&family=Frijole&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/meme-editor.css">
     <link rel="stylesheet" href="css/meme-gallery.css">
@@ -23,9 +26,6 @@
                     <a href="#">Gallery</a>
                 </li>
                 <li>
-                    <a href="#">Editor</a>
-                </li>
-                <li>
                     <a href="#">About</a>
                 </li>
             </ul>
@@ -33,15 +33,26 @@
     </nav>
 
     <section class="meme-editor container flex">
-        <div class="editor-container">
-            <canvas id="editor" width="500" height="500"> </canvas>
+        <div class="canvas-container">
+            <canvas id="canvas"> </canvas>
         </div>
         <div class="edit-tools">
             <input type="text" name="lineText" placeholder="Insert Text Here" oninput="onSetLineText(this.value)">
+            <button class="switch-lines-btn" title="Switch Lines" onclick="onSwitchLine()"><i class="fas fa-exchange-alt"></i></button>
+            <div class="text-edit">
+                <button onclick="onChangeFontSize(1)" title="Increase font size">A+</button>
+                <button onclick="onChangeFontSize(-1)" title="Decrease font size">A-</button>
+                <button onclick="onChangeLineHeight(-10)" title="Move Line Up">A🠝</button>
+                <button onclick="onChangeLineHeight(+10)" title="Move Line Down">A🠟</button>
+            </div>
+            
+            <a class="download-meme" href="#" onclick="onDownloadCanvas(this)" download="">Download</a>
+
         </div>
+
     </section>
 
-    <section class="meme-gallery container flex">
+    <section class="meme-gallery container flex wrap">
     </section>
 
 

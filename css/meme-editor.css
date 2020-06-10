@@ -1,16 +1,69 @@
+
 /* MEME EDITOR */
+
+.canvas-container {
+    height: 500px;
+    width: 500px;
+    margin-inline-end: 1rem;
+    margin: 0 auto;
+}
 
 .meme-editor {
     margin-top: 1.6rem;
     border: 2px solid black;
+    height: 500px;
+    box-sizing: content-box;
+    padding: 20px;
+    background-color: aliceblue;
 }
 
 .edit-tools {
+    box-sizing: border-box;
     text-align: center;
     flex: 1;
 }
 
 .edit-tools input[name="lineText"] {
     margin-top: 1.6rem;
-    padding: 0.8rem;
+    padding: 0.5rem;
+    margin: 10px auto;
+}
+
+.switch-lines-btn {
+    transform: rotate(90deg);
+    height: 2rem;
+    width: 2rem;
+}
+
+.edit-tools button {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.384);
+}
+
+.text-edit button {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 5px;
+}
+
+a.download-meme {
+    display: flex;
+    background-color: rgb(129, 188, 255);
+    justify-content: center;
+    border: 1px solid black;
+    padding: 0.5rem;
+    font-family: 'Days One', sans-serif;
+    margin-top: 1rem;
+}
+
+
+@media (max-width: 800px) {
+    .meme-editor {
+        flex-direction: column;
+        height: 500px;
+    }
+    .canvas-container {
+        height: 300px;
+        width: 300px;
+    }
 }
