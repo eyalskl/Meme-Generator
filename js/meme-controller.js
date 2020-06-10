@@ -151,6 +151,7 @@ function onRemoveLine() {
 
 function onAddLine() {
     addLine();
+    setInputText()
     renderMeme();
 }
 

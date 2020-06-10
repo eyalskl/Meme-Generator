@@ -2,6 +2,7 @@
 
 .meme-gallery {
     margin-top: 20px;
+    padding-inline-start: 4rem;
 }
 
 .meme-gallery img, .saved-memes-container img {
@@ -18,6 +19,7 @@
 
 .memes {
     text-align: center;
+    padding-inline-start: 4rem;
 }
 
 .meme-gallery img:hover {
@@ -25,9 +27,21 @@
 }
 
 @media (max-width: 800px) {
-    .meme-gallery img {
+    .meme-gallery img, .memes img {
         width: 200px;
         height: 200px;
+        margin: .25rem;
+    }
+}
+
+@media (max-width: 620px) {
+    .container {
+        max-width: 400px;
+    }
+
+    .meme-gallery img, .memes img {
+        width: 150px;
+        height: 150px;
         margin: .25rem;
     }
 }

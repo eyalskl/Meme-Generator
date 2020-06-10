@@ -92,10 +92,12 @@ a.download-meme {
 @media (max-width: 800px) {
     .meme-editor {
         flex-direction: column;
-        height: 750px;
+        height: 725px;
     }
     .canvas-container {
         height: 300px;
         width: 300px;
+        margin: 0 auto;
     }
 }
+
