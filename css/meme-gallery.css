@@ -47,9 +47,6 @@
     border: 1px solid black;
     border-radius: 1rem;
     transition: all .3s;
-}
-
-.meme-gallery img {
     cursor: pointer;
 }
 
@@ -65,9 +62,9 @@
     cursor: default;
 }
 
-.meme-gallery img:hover {
+.meme-gallery img:hover, .saved-memes-container img:hover {
     opacity: 0.7;
-    outline: 3px double white;
+    border: 1px double white;
 }
 
 @media (max-width: 800px) {

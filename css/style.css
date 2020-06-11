@@ -118,6 +118,10 @@ a {
     display: flex;
 }
 
+.flex.col {
+    flex-direction: col;
+}
+
 .flex.wrap {
     flex-wrap: wrap;
 }

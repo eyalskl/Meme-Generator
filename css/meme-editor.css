@@ -8,13 +8,17 @@
     margin-inline-end: 1rem;
 }
 
+canvas {
+    cursor: crosshair;
+}
+
 .meme-editor {
     margin-top: 1.6rem;
     border: 2px solid black;
     height: 500px;
     box-sizing: content-box;
     padding: 20px;
-    background-color: aliceblue;
+    background-color: rgb(162, 212, 255);
     box-shadow: 4px 4px 4px black;
 }
 
@@ -64,6 +68,11 @@
     padding: 0.5rem;
 }
 
+.font-color-size {
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
 .align-text {
     font-size: 1.6rem;
 }
@@ -77,22 +86,42 @@
     transform: scale(1.1);
 }
 
+button.share-btn {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    padding: 0.5rem;
+    font-family: 'Days One', sans-serif;
+    margin-top: 1rem;
+    box-shadow: 2px 2px 2px black;
+    transition: all .7s;
+}
+
+button.share-btn:hover {
+    background-color: rgb(112, 177, 252);
+    transform: scale(1.1);
+}
+
 a.download-meme {
     display: flex;
-    background-color: rgb(129, 188, 255);
+    background-color: rgb(255, 255, 255);
     justify-content: center;
     border: 1px solid black;
     padding: 0.5rem;
     font-family: 'Days One', sans-serif;
     margin-top: 1rem;
     box-shadow: 2px 2px 2px black;
+    transition: background-color .7s;
 }
 
+a.download-meme:hover {
+    background-color: rgb(129, 188, 255);
+}
 
 @media (max-width: 800px) {
     .meme-editor {
         flex-direction: column;
-        height: 725px;
+        height: 775px;
+        margin-bottom: 1rem;
     }
     .canvas-container {
         height: 300px;

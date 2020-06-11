@@ -23,8 +23,8 @@ function resetMeme() {
             font: 'impact',
             size: 30,
             align: 'center',
-            color: 'white',
-            strokeColor: 'black',
+            color: '#ffffff',
+            strokeColor: '#000000',
             y: 50,
             x: gElCanvas.width / 2
         },
@@ -33,8 +33,8 @@ function resetMeme() {
             font: 'impact',
             size: 30,
             align: 'center',
-            color: 'white',
-            strokeColor: 'black',
+            color: '#ffffff',
+            strokeColor: '#000000',
             y: gElCanvas.height - 25,
             x: gElCanvas.width / 2
         }
@@ -97,6 +97,11 @@ function getImgs() {
     });
 }
 
+function deleteSavedMeme(memeIdx) {
+    gSavedMemes.splice(memeIdx, 1);
+    saveToStorage(KEY, gSavedMemes)
+}
+
 function getSavedMemes() {
     return gSavedMemes;
 }
@@ -113,6 +118,10 @@ function setFontColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color;
 }
 
+function setStrokeColor(strokeColor) {
+    gMeme.lines[gMeme.selectedLineIdx].strokeColor = strokeColor;
+}
+
 function setFontSize(fontSize) {
     gMeme.lines[gMeme.selectedLineIdx].size = fontSize;
 }
@@ -126,7 +135,6 @@ function setAlignText(alignDir) {
 }
 
 function setMeme(imgId) {
-    // gMeme.lines.forEach(line => line.txt = 'insert text here')
     resetMeme();
     gMeme.selectedImgId = imgId;
 }
@@ -157,9 +165,9 @@ function addLine() {
         font: 'impact',
         size: 30,
         align: 'center',
-        color: 'white',
-        strokeColor: 'black',
-        y: gElCanvas.height / 2,
+        color: '#ffffff',
+        strokeColor: '#000000',
+        y: gElCanvas.width / 2,
         x: gElCanvas.width / 2
     });
     gMeme.selectedLineIdx = gMeme.lines.length - 1;

@@ -29,21 +29,21 @@
     <nav class="nav">
         <div class="nav-container container flex justify-between align-center">
             <div class="logo">
-                <a title="Created by Eyal.B" href="#"  onclick="openGallery()"">Meme<span>_</span>Gen<span>.</span></a>
+                <a title="Created by Eyal.B" href="#" onclick="openGallery()"">Meme<span>_</span>Gen<span>.</span></a>
             </div>
 
-            <ul class="main-nav flex clean-list">
-                <li>
-                    <a href="#" onclick="openGallery()">Gallery</a>
-                </li>
-                <li>
-                    <a href="#" onclick="openSavedMemes()">Memes</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-            </ul>
-        </div>
+            <ul class=" main-nav flex clean-list">
+                    <li>
+                        <a href="#" onclick="openGallery()">Gallery</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="openSavedMemes()">Memes</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    </ul>
+            </div>
     </nav>
 
 
@@ -59,11 +59,12 @@
     <!-- MEME EDITOR SECTION -->
     <section class="meme-editor container flex">
         <div class="canvas-container">
-            <canvas id="canvas"> </canvas>
+            <canvas id="canvas" onmousewheel="onWheelFontSize(event)" onmousedown="onSwitchLine(event)"
+                onmousemove="dragLines(event)" onmouseup="toggleDrag()"> </canvas>
         </div>
         <div class="edit-tools">
             <input type="text" name="lineText" placeholder="Insert Text Here" oninput="onSetLineText(this.value)">
-            <button class="switch-lines-btn" title="Switch Lines" onclick="onSwitchLine()"><i
+            <button class="switch-lines-btn" title="Switch Lines" onclick="onSwitchLine(event)"><i
                     class="fas fa-exchange-alt"></i></button>
 
             <div class="lines-add-remove">
@@ -90,7 +91,9 @@
                 </select>
             </div>
             <div class="font-color-size">
-                <input type="color" name="fontColor" title="Text Color" onchange="onSetFontColor(this.value)">
+                <input type="color" name="fontColor" value="#ffffff" title="Text Color"
+                    onchange="onSetFontColor(this.value)">
+                <input type="color" name="strokeColor" title="Stroke Color" onchange="onSetStrokeColor(this.value)">
                 <input type="range" name="fontSize" min="1" max="100" value="30" title="Font Size"
                     onchange="onSetFontSize(this.value)"> <span class="font-size">30</span>
             </div>
@@ -105,9 +108,16 @@
                     <i class="fas fa-align-right"></i>
                 </button>
             </div>
-            <a class="download-meme" title="Download Meme!" href="#" onclick="onDownloadMeme(this)"
-                download="">Download</a>
-            <a class="download-meme" title="Save Meme" href="#" onclick="onSaveMeme(this)">Save</a>
+            <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                <input name="img" id="imgData" type="hidden" />
+                <button class="share-btn" type="submit" title="Share!"><i class="fas fa-share-alt"></i></button>
+                <div class="share-container hide">
+                     <a class="download-meme" onclick="hideShareBtns()" href="#" title="Share on Facebook!" target="_blank"><i class="fab fa-facebook"></i></a>
+                     <a class="download-meme" title="Download Meme!" href="#" onclick="onDownloadMeme(this)" download=""><i class="fas fa-download"></i></a>
+                     <a class="download-meme" title="Save to my Memes!" href="#" onclick="onSaveMeme(this)"><i class="fas fa-save"></i></a>
+                </div>
+            </form>
+
 
         </div>
 
@@ -117,8 +127,14 @@
     <!-- MEME GALLERY SECTION -->
     <section class="meme-gallery container flex wrap">
         <div class="search-bar flex align-center">
-            <input type="search" list="keywords" name="keyword" placeholder="Search by keywords..."
-                oninput="onSetFilterBy(this.value)">
+            <div class="search-upload flex wrap">
+                <input type="search" list="keywords" name="keyword" placeholder="Search by keywords..."
+                    oninput="onSetFilterBy(this.value)">
+                <div class="upload">
+                    <label for="image">Upload your own</label>
+                    <input id="image" type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+                </div>
+            </div>
             <span class="growing-keywords"></span>
         </div>
         <div class="gallery"></div>
@@ -127,6 +143,7 @@
 
 
     <script src="js/util-service.js"></script>
+    <script src="js/upload-service.js"></script>
     <script src="js/storage-service.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
