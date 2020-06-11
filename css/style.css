@@ -236,6 +236,10 @@ a {
         padding: 1rem;
     }
 
+    .themes button {
+        font-size: .9rem;
+    }
+
     .main-nav {
         flex-direction: column;
         position: fixed;
