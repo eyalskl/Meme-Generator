@@ -4,12 +4,12 @@ var gElCanvas;
 var gCtx;
 var gCanDrag;
 var gThemes = [
-    {name: 'default', url: '../icons/bg.jpg', navColor: 'rgba(230, 230, 230, 0.781)'},
-    {name: 'cats', url: '../icons/cats.jpg', navColor: '#88715f'},
-    {name: 'politic', url: '../icons/politic.jpg', navColor: '#e8eced'},
-    {name: 'anime', url: '../icons/anime.jpg', navColor: 'rgb(254, 80, 87)'},
-    {name: 'kid', url: '../icons/kid.jpg', navColor: '#05b84f'},
-    {name: 'dogs', url: '../icons/dogs.jpg', navColor: '#4d342d'}
+    {name: 'default', url: 'icons/bg.jpg', navColor: 'rgba(230, 230, 230, 0.781)'},
+    {name: 'cats', url: 'icons/cats.jpg', navColor: '#88715f'},
+    {name: 'politic', url: 'icons/politic.jpg', navColor: '#e8eced'},
+    {name: 'anime', url: 'icons/anime.jpg', navColor: 'rgb(254, 80, 87)'},
+    {name: 'kid', url: 'icons/kid.jpg', navColor: '#05b84f'},
+    {name: 'dogs', url: 'icons/dogs.jpg', navColor: '#4d342d'}
 ];
 
 
