@@ -333,6 +333,8 @@ function onSetTheme(elThemeBtn) {
     var themeName = elThemeBtn.id;
     var theme = gThemes.find(theme => theme.name === themeName);
     document.body.style.backgroundImage = `url('${theme.url}')`;
+    document.querySelector('.main-footer').style.backgroundColor = theme.navColor;
+    document.querySelector('.main-footer').style.opacity = '0.9';
     document.querySelector('.nav').style.backgroundColor = theme.navColor;
     if (theme.name !== 'default') document.querySelector('.nav').style.opacity = '0.9';
     setThemeMode(elThemeBtn);
