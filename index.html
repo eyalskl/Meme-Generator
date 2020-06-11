@@ -8,12 +8,17 @@
     <script src="https://kit.fontawesome.com/f4b51a9e99.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Days+One&family=Frijole&display=swap"
         rel="stylesheet">
+    <link rel="shortcut icon" href="icons/title.png" />
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/meme-editor.css">
     <link rel="stylesheet" href="css/meme-gallery.css">
 </head>
 
-<body onload="onInit()">
+<body onload="onInit()" class="fixed-bg">
+    <!-- onresize="resizeCanvasOnResize()" -->
+
+    <div class="screen" onclick="toggleMenu()"></div>
+
     <datalist id="keywords">
         <option value="Popular">
         <option value="Men">
@@ -32,6 +37,8 @@
                 <a title="Created by Eyal.B" href="#" onclick="openGallery()"">Meme<span>_</span>Gen<span>.</span></a>
             </div>
 
+            <button class="btn-menu" onclick="toggleMenu()" hidden>☰</button>
+
             <ul class=" main-nav flex clean-list">
                     <li>
                         <a href="#" onclick="openGallery()">Gallery</a>
@@ -40,16 +47,28 @@
                         <a href="#" onclick="openSavedMemes()">Memes</a>
                     </li>
                     <li>
+                        <a href="#" onclick="openThemes()">Themes</a>
+                    </li>
+                    <li>
                         <a href="#">About</a>
                     </li>
                     </ul>
             </div>
     </nav>
 
+    <section class="themes hide">
+        <button id="default" class="selected-theme" onclick="onSetTheme(this)">Default</button>
+        <button id="cats" onclick="onSetTheme(this)">Cats</button>
+        <button id="politic" onclick="onSetTheme(this)">Politic</button>
+        <button id="anime" onclick="onSetTheme(this)">Anime</button>
+        <button id="kid" onclick="onSetTheme(this)">Kid</button>
+        <button id="dogs" onclick="onSetTheme(this)">Dogs</button>
+        <button title="Minimize Themes Bar" onclick="closeThemes()"><i class="far fa-minus-square"></i></button>
+    </section>
 
     <!-- SAVED MEMES SECTION -->
     <section class="memes container">
-        <h2>My saved Memes</h2>
+        <h2>My saved<span>_</span>Memes<span>.</span></h2>
         <div class="saved-memes-container flex wrap">
 
         </div>
@@ -91,9 +110,11 @@
                 </select>
             </div>
             <div class="font-color-size">
-                <input type="color" name="fontColor" value="#ffffff" title="Text Color"
-                    onchange="onSetFontColor(this.value)">
-                <input type="color" name="strokeColor" title="Stroke Color" onchange="onSetStrokeColor(this.value)">
+                <label for="fontColor" title="Text Color"><i class="fas fa-palette"></i></label>
+                <input id="fontColor" type="color" name="fontColor" value="#ffffff"
+                    oninput="onSetFontColor(this.value)">
+                <label for="strokeColor" title="Stroke Color"><i class="fas fa-paint-roller"></i></label>
+                <input id="strokeColor" type="color" name="strokeColor" oninput="onSetStrokeColor(this.value)">
                 <input type="range" name="fontSize" min="1" max="100" value="30" title="Font Size"
                     onchange="onSetFontSize(this.value)"> <span class="font-size">30</span>
             </div>
@@ -108,13 +129,23 @@
                     <i class="fas fa-align-right"></i>
                 </button>
             </div>
+            <div class="stickers">
+                <span id="&#128374" title="Click to add me!" onclick="onAddSticker(this.id)">&#128374</span>
+                <span id="&#127913" title="Click to add me!" onclick="onAddSticker(this.id)">&#127913</span>
+                <span id="&#128035" title="Click to add me!" onclick="onAddSticker(this.id)">&#128035</span>
+                <span id="&#128082" title="Click to add me!" onclick="onAddSticker(this.id)">&#128082</span>
+                <span id="&#129395" title="Click to add me!" onclick="onAddSticker(this.id)">&#129395</span>
+            </div>
             <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
                 <input name="img" id="imgData" type="hidden" />
                 <button class="share-btn" type="submit" title="Share!"><i class="fas fa-share-alt"></i></button>
                 <div class="share-container hide">
-                     <a class="download-meme" onclick="hideShareBtns()" href="#" title="Share on Facebook!" target="_blank"><i class="fab fa-facebook"></i></a>
-                     <a class="download-meme" title="Download Meme!" href="#" onclick="onDownloadMeme(this)" download=""><i class="fas fa-download"></i></a>
-                     <a class="download-meme" title="Save to my Memes!" href="#" onclick="onSaveMeme(this)"><i class="fas fa-save"></i></a>
+                    <a class="download-meme facebook" onclick="hideShareBtns()" href="#" title="Share on Facebook!"
+                        target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a class="download-meme download" title="Download Meme!" href="#" onclick="onDownloadMeme(this)"
+                        download=""><i class="fas fa-download"></i></a>
+                    <a class="download-meme save" title="Save to my Memes!" href="#" onclick="onSaveMeme(this)"><i
+                            class="fas fa-save"></i></a>
                 </div>
             </form>
 

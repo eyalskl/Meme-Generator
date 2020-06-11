@@ -73,6 +73,41 @@ canvas {
     margin-bottom: 0.8rem;
 }
 
+
+.font-color-size label {
+    background-color: rgb(216, 216, 216);
+    border: 1px solid rgba(0, 0, 0, 0.384);
+    box-shadow: 2px 2px 4px black;
+    padding: 0.5rem;
+}
+
+.font-color-size i {
+    cursor: pointer;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    outline: none;
+	border: none;
+	width: 0em;
+    height: 0em;
+    cursor: pointer;
+    background-color: transparent;
+
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+    border-radius: 50%;
+}
+
+/* input[name="fontColor"] {
+    background: url('../icons/color.png') no-repeat center center;
+    background-size: cover;
+} */
+
 .align-text {
     font-size: 1.6rem;
 }
@@ -86,6 +121,18 @@ canvas {
     transform: scale(1.1);
 }
 
+.stickers {
+    margin-top: .6rem;
+    background-color: rgba(255, 255, 255, 0.452);
+    padding: 10px;
+    font-size: 2rem;
+    border: 1px solid black;
+}
+
+.stickers span {
+    cursor: pointer;
+}
+
 button.share-btn {
     background-color: rgb(255, 255, 255);
     border: 1px solid black;
@@ -94,6 +141,8 @@ button.share-btn {
     margin-top: 1rem;
     box-shadow: 2px 2px 2px black;
     transition: all .7s;
+    margin-bottom: .5rem;
+    width: 115px;
 }
 
 button.share-btn:hover {
@@ -102,31 +151,37 @@ button.share-btn:hover {
 }
 
 a.download-meme {
-    display: flex;
+    width: 35px;
+    display: inline-block;
     background-color: rgb(255, 255, 255);
-    justify-content: center;
     border: 1px solid black;
     padding: 0.5rem;
     font-family: 'Days One', sans-serif;
-    margin-top: 1rem;
     box-shadow: 2px 2px 2px black;
-    transition: background-color .7s;
+    transition: .3s;
 }
 
 a.download-meme:hover {
-    background-color: rgb(129, 188, 255);
+    opacity: 1;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 860px) {
     .meme-editor {
         flex-direction: column;
-        height: 775px;
+        height: 800px;
         margin-bottom: 1rem;
     }
+    .canvas-container {
+        height: 400px;
+        width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 620px) {
     .canvas-container {
         height: 300px;
         width: 300px;
         margin: 0 auto;
     }
 }
-

@@ -10,7 +10,14 @@ html {
 
 body {
     margin: 0;
-    background: url('../icons/bg.jpg') no-repeat center center fixed;
+    background: url('../icons/bg.jpg');
+    transition: background .3s;
+}
+
+.fixed-bg {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
 }
 
@@ -20,22 +27,7 @@ button {
     font-family: 'Days One', sans-serif;
 }
 
-input[type="color"] {
-    -webkit-appearance: none;
-    outline: none;
-	border: none;
-	width: 1.5em;
-    height: 1.5em;
-    cursor: pointer;
-    background-color: transparent;
-}
-input[type="color"]::-webkit-color-swatch-wrapper {
-	padding: 0;
-}
-input[type="color"]::-webkit-color-swatch {
-	border: none;
-    border-radius: 50%;
-}
+
 
 /* font-family: 'Black Ops One', cursive;
 font-family: 'Days One', sans-serif;
@@ -45,6 +37,23 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+/* SCREEN */
+
+.screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .8s;
+}
+
+
 
 /* NAV */
 
@@ -58,8 +67,8 @@ a {
 .logo {
     font-family: 'Days One', sans-serif;
     font-size: 2.5rem;
-    color: rgb(161, 161, 161);
-    text-shadow: 2px 2px 2px black;
+    color: rgb(121, 121, 121);
+    text-shadow: 2px 2px 2px white;
     transition: .7s;
 }
 .logo:hover {
@@ -68,8 +77,7 @@ a {
 
 .logo span {
     color: rgb(163, 163, 255);
-    text-shadow: 2px 2px 2px black;
-
+    text-shadow: 2px 2px 2px white;
 }
 
 .main-nav {
@@ -106,11 +114,31 @@ a {
 
 }
 
+/* THEME SECTION */
+
+.themes {
+    background-color: rgba(143, 163, 250, 0.9);
+    padding: 20px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.themes button {
+    font-size: 1rem;
+    padding: 5px;
+    transition: .5s;
+}
+
+.themes button:last-of-type {
+    background-color:rgb(170, 170, 170);
+    color: white;
+    width: 2rem;
+}
+
 /* HELPERS */
 
-
 .container {
-    max-width: 980px;
+    max-width: 940px;
     margin: 0 auto;
 }
 
@@ -150,6 +178,33 @@ a {
  display: none;
 }
 
+.selected-theme {
+    background-color: rgb(92, 255, 100);
+    color: rgb(143, 143, 143);
+    transform: scale(1.05);
+    text-transform: uppercase;
+}
+
+.download-meme.facebook {
+    background-color: #0d8af0;
+    opacity: 0.8;
+    color: white;
+}
+
+.download-meme.download {
+    background-color: #f9fc47;
+    opacity: 0.8;
+    color: black;
+}
+
+.download-meme.save {
+    background-color: #28fd28;
+    opacity: 0.5;
+    color: white;
+}
+
+
+
 /* RESPOSIVENESS */
 
 @media (max-width: 1050px) {
@@ -158,7 +213,7 @@ a {
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 860px) {
     .container {
         max-width: 550px;
     }
@@ -175,5 +230,55 @@ a {
 @media (max-width: 620px) {
     .container {
         max-width: 400px;
+    }
+
+    .logo {
+        padding: 1rem;
+    }
+
+    .main-nav {
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-left: 1px solid #c4c4c4;
+        transform: translateX(100%);
+        transition: transform .8s, box-shadow .3s;
+        padding: 0;
+    }
+
+    .nav button.btn-menu {
+        display: inline-block;
+        color: rgb(121, 121, 255);
+        background-color: transparent;
+        border: none;
+        outline: none;
+        font-size: 2rem;
+        margin-inline-end: 1.25rem;
+    }
+
+    .menu-open .main-nav {
+        transform: translateX(0);
+        box-shadow: -6px 0px 14px rgba(0, 0, 0, 0.2);
+    }
+    .menu-open .screen {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .main-nav li {
+        margin: 0;
+    }
+
+    .main-nav li:first-of-type {
+        border: none;
+    }
+
+    .main-nav li a {
+        height: 75px;
+        width: 250PX;
+        font-size: 1rem;
     }
 }

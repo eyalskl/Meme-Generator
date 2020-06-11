@@ -3,6 +3,15 @@
 var gElCanvas;
 var gCtx;
 var gCanDrag;
+var gThemes = [
+    {name: 'default', url: '../icons/bg.jpg', navColor: 'rgba(230, 230, 230, 0.781)'},
+    {name: 'cats', url: '../icons/cats.jpg', navColor: '#88715f'},
+    {name: 'politic', url: '../icons/politic.jpg', navColor: '#e8eced'},
+    {name: 'anime', url: '../icons/anime.jpg', navColor: 'rgb(254, 80, 87)'},
+    {name: 'kid', url: '../icons/kid.jpg', navColor: '#05b84f'},
+    {name: 'dogs', url: '../icons/dogs.jpg', navColor: '#4d342d'}
+];
+
 
 function onInit() {
     gSavedMemes = loadFromStorage(KEY);
@@ -23,10 +32,13 @@ function onInit() {
 function renderControls() {
     var line = getMeme().lines[getMeme().selectedLineIdx];
     document.querySelector('[name="fontFamily"]').value = line.font;
-    document.querySelector('[name="fontColor"]').value = line.color;
     document.querySelector('[name="strokeColor"]').value = line.strokeColor;
     document.querySelector('[name="fontSize"]').value = line.size;
     document.querySelector('.font-size').innerText = line.size;
+    document.querySelector('[for="fontColor"]').style.color = line.color;
+    document.querySelector('[for="strokeColor"]').style.color = line.strokeColor;
+
+    // document.querySelector('[name="lineText]') = line.txt;
     setBtnMode(document.getElementById(`${line.align}`));
 }
 
@@ -71,16 +83,20 @@ function resizeCanvas() {
     gElCanvas.height = elContainer.offsetHeight;
 }
 
+function resizeCanvasOnResize() {
+    var elContainer = document.querySelector('.canvas-container');
+    gElCanvas.width = elContainer.offsetWidth;
+    gElCanvas.height = elContainer.offsetHeight;
+    resetMeme();
+    renderMeme();
+}
+
 function drawLines() {
     const meme = getMeme();
     meme.lines.forEach((line, idx) => {
         if (idx === meme.selectedLineIdx) {
             gCtx.fillStyle = `rgba(255,255,255,0.5)`
             gCtx.fillRect(0, line.y - line.size, gElCanvas.width, line.size);
-            // gCtx.fillRect(line.x, line.y - line.size, gCtx.measureText(line.txt.toUpperCase()).width, line.size);
-            // gCtx.strokeStyle = 'black';
-            // gCtx.strokeRect(line.x - gCtx.measureText(line.txt.toUpperCase()).width, line.y - line.size, gCtx.measureText(line.txt.toUpperCase()).width, line.size)
-            // gCtx.fill();
         }
         gCtx.font = line.size + 'pt ' + line.font;
         gCtx.textAlign = line.align;
@@ -139,6 +155,16 @@ function openGallery() {
     document.querySelector('.meme-gallery').classList.remove('hide');
     document.querySelector('.meme-editor').classList.add('hide');
     document.querySelector('.memes').classList.add('hide');
+    resetMeme();
+    renderMeme();
+}
+
+function openThemes() {
+    document.querySelector('.themes').classList.toggle('hide');
+}
+
+function closeThemes() {
+    document.querySelector('.themes').classList.add('hide');
 }
 
 function openSavedMemes() {
@@ -167,11 +193,13 @@ function onChangeLineHeight(diff) {
 function onSetFontColor(color) {
     setFontColor(color);
     renderMeme();
+    document.querySelector('[for="fontColor"]').style.color = color;
 }
 
 function onSetStrokeColor(strokeColor) {
     setStrokeColor(strokeColor);
     renderMeme()
+    document.querySelector('[for="strokeColor"]').style.color = strokeColor;
 }
 
 function onSetFontSize(fontSize) {
@@ -194,7 +222,7 @@ function onSwitchLine(ev) {
     } else {
         var offsetY = ev.offsetY;
         getMeme().lines.forEach((line, idx) => {
-            if (idx === getMeme().selectedLineIdx) console.log('selected line');
+            if (idx === getMeme().selectedLineIdx) gCanDrag = true;
             else if (offsetY >= (line.y - line.size) && offsetY <= line.y) {
                 getMeme().selectedLineIdx = idx;
                 renderMeme();
@@ -244,7 +272,7 @@ function renderSavedMemes() {
     const savedMemes = loadFromStorage(KEY);
     var strHTML;
     if (!savedMemes || savedMemes.length === 0) strHTML = 'There are no saved memes yet!'
-    else strHTML = savedMemes.map((meme,idx) => {
+    else strHTML = savedMemes.map((meme, idx) => {
         return `<img id=${idx} title="Click to delete" onclick="onDeleteSavedMeme(this.id)" src="${meme}" />`;
     }).join('')
     document.querySelector('.saved-memes-container').innerHTML = strHTML;
@@ -259,6 +287,11 @@ function onDeleteSavedMeme(memeIdx) {
 function setBtnMode(elAlignBtn) {
     document.querySelectorAll('.align-text button').forEach(btn => btn.classList.remove('mode'));
     elAlignBtn.classList.add('mode');
+}
+
+function setThemeMode(elThemeBtn) {
+    document.querySelectorAll('.themes button').forEach(btn => btn.classList.remove('selected-theme'));
+    elThemeBtn.classList.add('selected-theme');
 }
 
 function onSetFilterBy(keyword) {
@@ -289,4 +322,23 @@ function renderCanvas(img) {
     document.querySelector('.meme-editor').classList.remove('hide');
     document.querySelector('.meme-gallery').classList.add('hide');
     document.querySelector('.memes').classList.add('hide');
+}
+
+function onAddSticker(sticker) {
+    addSticker(sticker);
+    renderMeme();
+}
+
+function onSetTheme(elThemeBtn) {
+    var themeName = elThemeBtn.id;
+    var theme = gThemes.find(theme => theme.name === themeName);
+    document.body.style.backgroundImage = `url('${theme.url}')`;
+    document.querySelector('.nav').style.backgroundColor = theme.navColor;
+    if (theme.name !== 'default') document.querySelector('.nav').style.opacity = '0.9';
+    setThemeMode(elThemeBtn);
+}
+
+
+function toggleMenu() {
+    document.body.classList.toggle('menu-open');
 }

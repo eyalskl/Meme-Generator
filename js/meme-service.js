@@ -111,6 +111,7 @@ function getKeywords() {
 }
 
 function setLineText(lineText) {
+    if (gMeme.lines[gMeme.selectedLineIdx].isSticker) return;
     gMeme.lines[gMeme.selectedLineIdx].txt = lineText;
 }
 
@@ -159,16 +160,17 @@ function removeLine() {
     gMeme.selectedLineIdx = 0;
 }
 
-function addLine() {
+function addLine(txt = 'insert text here', isSticker = false) {
     gMeme.lines.push({
-        txt: 'insert text here',
+        txt,
         font: 'impact',
         size: 30,
         align: 'center',
         color: '#ffffff',
         strokeColor: '#000000',
         y: gElCanvas.width / 2,
-        x: gElCanvas.width / 2
+        x: gElCanvas.width / 2,
+        isSticker,
     });
     gMeme.selectedLineIdx = gMeme.lines.length - 1;
 }
@@ -194,4 +196,8 @@ function createKeywordMap() {
     }, {});
     gKeywordsCount = Object.keys(keywordMap).length;
     return keywordMap;
+}
+
+function addSticker(sticker) {
+    addLine(sticker, true);
 }
