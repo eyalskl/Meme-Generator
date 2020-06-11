@@ -44,7 +44,6 @@ canvas {
 }
 
 .switch-lines-btn {
-    transform: rotate(90deg);
     height: 2.6rem;
     width: 2.6rem;
     font-size: 1.2rem;
@@ -114,11 +113,11 @@ input[type="color"]::-webkit-color-swatch {
 
 .align-text button {
     transition: .3s;
+    z-index: 0;
 }
 
 .align-text button.mode {
     background-color: rgb(129, 188, 255);
-    transform: scale(1.1);
 }
 
 .stickers {
