@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/meme-gallery.css">
 </head>
 
-<body onload="onInit()" class="fixed-bg">
+<body onload="onInit()" onkeydown="onManuellyType(event)" class="fixed-bg">
     <!-- onresize="resizeCanvasOnResize()" -->
     <div class="screen" onclick="toggleMenu()"></div>
 
@@ -35,7 +35,7 @@
                 <div class="nav-container container flex justify-between align-center">
                     <div class="logo">
                         <a title="Created by Eyal.B" href="#" onclick="openGallery()"">Meme<span>_</span>Gen<span>.</span></a>
-            </div>
+                    </div>
 
             <button class=" btn-menu" onclick="toggleMenu()" hidden>☰</button>
 
@@ -98,14 +98,14 @@
                     </div>
                     <div class="font-edit">
                         <select name="fontFamily" onchange="onSetFontFamily(this.value)" style="font-family: Impact;">
-                            <option value="impact" style="font-family: Impact;">Impact</option>
-                            <option value="arial" style="font-family: arial;">Arial</option>
+                            <option value="Impact" style="font-family: Impact;">Impact</option>
+                            <option value="Arial" style="font-family: arial;">Arial</option>
                             <option value="Trebuchet MS" style="font-family: Trebuchet MS;">Trebuchet MS</option>
                             <option value="Times New Roman" style="font-family: Times New Roman;">Times New Roman
                             </option>
                             <option value="Frijole" style="font-family: Frijole;">Frijole</option>
                             <option value="Verdana" style="font-family: Verdana;">Verdana</option>
-                            <option value="Verdana" style="font-family: Verdana;">Tahoma</option>
+                            <option value="Tahoma" style="font-family: Verdana;">Tahoma</option>
                             <option value="cursive" style="font-family: cursive;">Cursive</option>
                             <option value="Days One" style="font-family: Days One;">Days One</option>
                         </select>
@@ -149,7 +149,12 @@
                                 onclick="onSaveMeme(this)"><i class="fas fa-save"></i></a>
                         </div>
                     </form>
-
+                    <div class="info">
+                        <h3>On Desktop :</h3>
+                        <p>'Escape' - to go back to Gallery</p>
+                        <p>'Tab' - to switch lines</p>
+                        <p>'Up/Down Arrows' - to change line Height</p>
+                    </div>
 
                 </div>
 
@@ -163,10 +168,12 @@
                         <input type="search" list="keywords" name="keyword" placeholder="Search by keywords..."
                             oninput="onSetFilterBy(this.value)">
                         <div class="upload">
-                            <label for="image">Upload your own</label>
-                            <input id="image" type="file" class="file-input btn" name="image"
+                            <a class="upload-btn">
+                            <label for="image"><i class="fas fa-upload"></i> Upload Image </label>
+                            <input id="image" type="file" class="file-input-btn" name="image"
                                 onchange="onImgInput(event)" />
-                        </div>
+                            </a>
+                            </div>
                     </div>
                     <span class="growing-keywords"></span>
                 </div>
@@ -179,8 +186,10 @@
             <div class="footer-container container flex align-center">
                 <h2><i class="fas fa-copyright"></i> Eyal<span>_</span>Barkai<span>.</span></h2>
                 <div class="socials flex">
-                    <a class="fb" title="Look me up on Facebook!" href="https://www.facebook.com/eyal.barkai.9" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a class="gh" title="My Github" href="https://github.com/eyalskl"><i class="fab fa-github" target="_blank"></i></a>
+                    <a class="fb" title="Look me up on Facebook!" href="https://www.facebook.com/eyal.barkai.9"
+                        target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a class="gh" title="My Github" href="https://github.com/eyalskl"><i class="fab fa-github"
+                            target="_blank"></i></a>
                 </div>
                 <h3>June 2020</h3>
             </div>

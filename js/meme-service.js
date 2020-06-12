@@ -20,8 +20,8 @@ function resetMeme() {
     gMeme.lines = [
         {
             txt: 'insert text here',
-            font: 'impact',
-            size: 30,
+            font: 'Impact',
+            size: 20,
             align: 'center',
             color: '#ffffff',
             strokeColor: '#000000',
@@ -30,8 +30,8 @@ function resetMeme() {
         },
         {
             txt: 'insert text here',
-            font: 'impact',
-            size: 30,
+            font: 'Impact',
+            size: 20,
             align: 'center',
             color: '#ffffff',
             strokeColor: '#000000',
@@ -61,6 +61,11 @@ function createImgs() {
     gImgs.push(_createImg(17, `imgs/17.jpg`, ['point', 'men', 'russia']));
     gImgs.push(_createImg(18, `imgs/18.jpg`, ['toy story', 'point', 'popular']));
 
+}
+
+function setUploadImg(img) {
+    gImgs.push({id: img.src, url: img.src, keywords: ['uploaded']});
+    gMeme.selectedImgId = img.src;
 }
 
 function _createImg(id, url, keywords) {

@@ -272,7 +272,7 @@ a {
 
 @media (max-width: 860px) {
     .container {
-        max-width: 550px;
+        max-width: 620px;
     }
     .main-nav li a {
         height: 75px;
@@ -282,11 +282,12 @@ a {
     .logo {
         font-size: 1.5rem;
     }
+
 }
 
 @media (max-width: 620px) {
     .container {
-        max-width: 400px;
+        max-width: 500px;
     }
     .logo {
         padding: 1rem;
@@ -305,8 +306,8 @@ a {
         top: 0;
         right: 0;
         height: 100vh;
-        background-color: rgba(255, 255, 255, 0.8);
-        border-left: 1px solid #c4c4c4;
+        background-color: rgba(163, 163, 255, 0.7);
+        border-left: 1px solid #000;
         transform: translateX(100%);
         transition: transform .8s, box-shadow .3s;
         padding: 0;
@@ -341,5 +342,7 @@ a {
         height: 75px;
         width: 250PX;
         font-size: 1rem;
+        border-bottom: 1px solid black;
     }
+
 }
