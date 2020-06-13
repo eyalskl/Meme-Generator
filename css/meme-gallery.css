@@ -122,16 +122,20 @@ a.upload-btn:hover {
 @media (max-width: 860px) {
     .meme-gallery {
         padding: 0;
-        padding-inline-start: 4rem;
+        /* padding-inline-start: 1rem; */
     }
     .meme-gallery img, .memes img {
-        width: 265px;
-        height: 265px;
+        width: 300px;
+        height: 300px;
         margin: .25rem;
     }
 }
 
 @media (max-width: 620px) {
+    .meme-gallery {
+        padding-inline-start: 2rem;
+    }
+
     .meme-gallery img, .memes img {
         width: 200px;
         height: 200px;
@@ -184,7 +188,11 @@ a.upload-btn:hover {
 
 @media (max-width: 380px) {
     .container {
-        max-width: 320px;
+        max-width: 300px;
+    }
+    .memes img {
+        width: 200px;
+        height: 200px;
     }
     .meme-gallery {
         padding-inline-start: 1rem;
@@ -193,7 +201,7 @@ a.upload-btn:hover {
         font-size: .7rem;
         width: 115px;
     }
-    .meme-gallery img, .memes img {
+    .meme-gallery img {
         width: 275px;
         height: 275px;
     }

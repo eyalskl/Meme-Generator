@@ -19,6 +19,7 @@ canvas {
     padding: 20px;
     background-color: rgb(162, 212, 255);
     box-shadow: 4px 4px 4px black;
+    margin-bottom: 3rem;
 }
 
 .edit-tools {

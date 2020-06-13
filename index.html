@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meme Generator</title>
+    <title>Meme_Gen.</title>
     <script src="https://kit.fontawesome.com/f4b51a9e99.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Days+One&family=Frijole&display=swap"
         rel="stylesheet">
@@ -15,7 +15,7 @@
 </head>
 
 <body onload="onInit()" onkeydown="onManuellyType(event)" onresize="resizeCanvasOnResize()" class="fixed-bg">
-    <!-- onresize="resizeCanvasOnResize()" -->
+
     <div class="screen" onclick="toggleMenu()"></div>
 
     <datalist id="keywords">
@@ -34,41 +34,55 @@
             <nav class="nav">
                 <div class="nav-container container flex justify-between align-center">
                     <div class="logo">
-                        <a title="Created by Eyal.B" onclick="openGallery2()" href="#">Meme<span>_</span>Gen<span>.</span></a>
+                        <a title="Created by Eyal.B" onclick="openGallery2()" href="#"
+                            data-trans="logo">Meme<span>_</span>Gen<span>.</span></a>
                     </div>
-                    
+
                     <button class=" btn-menu" onclick="toggleMenu()" hidden>☰</button>
 
-                            <ul class=" main-nav flex clean-list">
-                                <li>
-                                    <a href="#" class="nav-link gallery-link active" onclick="openGallery(this)">Gallery</a>
-                                </li>
-                                <li>
-                                    <a href="#"class="nav-link" onclick="openSavedMemes(this)">Memes</a>
-                                </li>
-                                <li>
-                                    <a href="#about" class="nav-link" onclick="onSetActive(this)">About</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="theme-link" onclick="openThemes(this)">Themes</a>
-                                </li>
-                            </ul>
+                    <div class="trans">
+                        <a id="en" class="nav-link js-scroll-trigger mode" onclick="onSetLang(this.id)"
+                            data-trans="lang-en"></a>
+                        <br>
+                        <a id="he" class="nav-link js-scroll-trigger" onclick="onSetLang(this.id)"
+                            data-trans="lang-he"></a>
                     </div>
+
+                    <ul class="main-nav flex clean-list">
+                        <li>
+                            <a href="#" class="nav-link gallery-link active" data-trans="gallery-link"
+                                onclick="openGallery(this)">Gallery</a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link" data-trans="memes-link"
+                                onclick="openSavedMemes(this)">Memes</a>
+                        </li>
+                        <li>
+                            <a href="#about" class="nav-link" data-trans="about-link"
+                                onclick="onSetActive(this)">About</a>
+                        </li>
+                        <li>
+                            <a href="#" class="theme-link" data-trans="themes-link"
+                                onclick="openThemes(this)">Themes</a>
+                        </li>
+                    </ul>
+                </div>
             </nav>
 
             <section class="themes hide">
-                <button id="default" class="selected-theme" onclick="onSetTheme(this)">Default</button>
-                <button id="cats" onclick="onSetTheme(this)">Cats</button>
-                <button id="politic" onclick="onSetTheme(this)">Politic</button>
-                <button id="anime" onclick="onSetTheme(this)">Anime</button>
-                <button id="kid" onclick="onSetTheme(this)">Kid</button>
-                <button id="dogs" onclick="onSetTheme(this)">Dogs</button>
+                <button id="default" class="selected-theme" onclick="onSetTheme(this)"
+                    data-trans="theme-default">Default</button>
+                <button id="cats" onclick="onSetTheme(this)" data-trans="theme-cats">Cats</button>
+                <button id="politic" onclick="onSetTheme(this)" data-trans="theme-politic">Politic</button>
+                <button id="anime" onclick="onSetTheme(this)" data-trans="theme-anime">Anime</button>
+                <button id="kid" onclick="onSetTheme(this)" data-trans="theme-kid">Kid</button>
+                <button id="dogs" onclick="onSetTheme(this)" data-trans="theme-dogs">Dogs</button>
                 <button title="Minimize Themes Bar" onclick="closeThemes()">X</button>
             </section>
 
             <!-- SAVED MEMES SECTION -->
             <section class="memes container">
-                <h2>My saved<span>_</span>Memes<span>.</span></h2>
+                <h2 data-trans="saved-memes">My saved<span>_</span>Memes<span>.</span></h2>
                 <div class="saved-memes-container flex wrap">
 
                 </div>
@@ -150,11 +164,11 @@
                         </div>
                     </form>
                     <div class="info">
-                        <h3>On Desktop :</h3>
-                        <p>'Escape' - return to Gallery</p>
-                        <p>'Tab' - to Switch Lines</p>
-                        <p>'Up/Down Arrows' - to change Line Height</p>
-                        <p>'Insert'/'Delete' - to Add/Remove Line</p>
+                        <h3 data-trans="desktop-info">On Desktop :</h3>
+                        <p data-trans="esc-info">'Escape' - return to Gallery</p>
+                        <p data-trans="tab-info">'Tab' - to Switch Lines</p>
+                        <p data-trans="arrows-info">'Up/Down Arrows' - to change Line Height</p>
+                        <p data-trans="line-info">'Insert'/'Delete' - to Add/Remove Line</p>
                     </div>
 
                 </div>
@@ -166,11 +180,12 @@
             <section class="meme-gallery container flex wrap">
                 <div class="search-bar flex align-center">
                     <div class="search-upload flex wrap">
-                        <input type="search" list="keywords" name="keyword" placeholder="Search by keywords..."
-                            oninput="onSetFilterBy(this.value)">
+                        <input type="search" list="keywords" name="keyword" data-trans="search"
+                            placeholder="Search by keywords..." oninput="onSetFilterBy(this.value)">
                         <div class="upload">
                             <a class="upload-btn">
-                                <label for="image"><i class="fas fa-upload"></i> Upload Image </label>
+                                <label for="image" data-trans="upload"><i class="fas fa-upload"></i> Upload Image
+                                </label>
                                 <input id="image" type="file" class="file-input-btn" name="image"
                                     onchange="onImgInput(event)" />
                             </a>
@@ -185,20 +200,22 @@
 
         <footer id="about" class="main-footer">
             <div class="footer-container container flex align-center">
-                <h2><i class="fas fa-copyright"></i> Eyal<span>_</span>Barkai<span>.</span></h2>
+                <h2 data-trans="footer-name"><i class="fas fa-copyright"></i> Eyal<span>_</span>Barkai<span>.</span>
+                </h2>
                 <div class="socials flex">
                     <a class="fb" title="Look me up on Facebook!" href="https://www.facebook.com/eyal.barkai.9"
                         target="_blank"><i class="fab fa-facebook-f"></i></a>
                     <a class="gh" title="My Github" href="https://github.com/eyalskl"><i class="fab fa-github"
                             target="_blank"></i></a>
                 </div>
-                <h3>June 2020</h3>
+                <h3 data-trans="footer-date">June 2020</h3>
             </div>
         </footer>
     </div>
 
     <script src="js/upload-service.js"></script>
     <script src="js/storage-service.js"></script>
+    <script src="js/i18n-service.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>

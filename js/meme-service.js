@@ -2,6 +2,7 @@
 
 const KEY = 'savedMemes'
 
+
 var gImgs = [];
 var gKeywords;
 var gKeywordsCount;
@@ -41,17 +42,9 @@ function resetMeme() {
     ]
 }
 
-function refershMeme() {
-    gMeme.lines.forEach(line => {
-        line.x = gElCanvas.width / 2
-        if (line.y > gElCanvas.height - 100) line.y = gElCanvas.height - 25;
-        else if (line.y <= 50) line.y = 50;
-        else line.y = gElCanvas.height / 2
-    })
-}
 
 function createImgs() {
-    gImgs.push(_createImg(1, `meme-imgs/1.jpg`, ['angry', 'popular', 'men']));
+    gImgs.push(_createImg(1, `meme-imgs/1.jpg`, ['popular', 'men']));
     gImgs.push(_createImg(2, `meme-imgs/2.jpg`, ['love', 'puppy', 'dog', 'animal', 'cute']));
     gImgs.push(_createImg(3, `meme-imgs/3.jpg`, ['baby', 'sleep', 'cute']));
     gImgs.push(_createImg(4, `meme-imgs/4.jpg`, ['cat', 'animal', 'sleep']));
@@ -69,7 +62,6 @@ function createImgs() {
     gImgs.push(_createImg(16, `meme-imgs/16.jpg`, ['awkward', 'lol', 'bald', 'men']));
     gImgs.push(_createImg(17, `meme-imgs/17.jpg`, ['point', 'men', 'russia']));
     gImgs.push(_createImg(18, `meme-imgs/18.jpg`, ['toy story', 'point', 'popular']));
-
 }
 
 function setUploadImg(img) {

@@ -110,6 +110,11 @@ a {
     /* box-shadow: inset 0px 6px white; */
 }
 
+.lang {
+    width: 2rem;
+    cursor: pointer;
+}
+
 .main-nav li a.active {
     background-color: rgba(163, 163, 255);
     color: white;
@@ -204,6 +209,10 @@ a {
 
 
 /* HELPERS */
+
+.rtl {
+    direction: rtl;
+}
 
 .container {
     max-width: 940px;
@@ -352,5 +361,11 @@ a {
         font-size: 1rem;
         border-bottom: 1px solid black;
     }
+}
 
+@media (max-width: 380px) {
+    
+    .footer-container h2,h3 { 
+        font-size: 0.8rem;
+    }
 }
