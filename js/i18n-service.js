@@ -95,10 +95,6 @@ var gTrans = {
         en: 'puppy',
         he: 'כלבלב'
     },
-    'kw-show': {
-        en: 'Show more...',
-        he: 'הצג עוד...'
-    },
     'kw-dog': {
         en: 'dog',
         he: 'כלב'
@@ -233,6 +229,7 @@ function doTrans() {
 
 function setLang(lang) {
     gCurrLang = lang;
+    renderKeywords();
     if (lang === 'he') document.body.classList.add('rtl');
     else document.body.classList.remove('rtl');
     doTrans()

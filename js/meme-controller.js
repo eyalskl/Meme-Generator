@@ -52,6 +52,7 @@ function onSetLang(elLang) {
     document.querySelectorAll('.trans a').forEach(elLang => elLang.classList.remove('active-lang'));
     elLang.classList.add('active-lang');
     setLang(elLang.id);
+    
 }
 
 function setTouchListeners() {
@@ -197,6 +198,7 @@ function onSetFontFamily(fontFamily) {
 
 function onSetMeme(imgId) {
     setMeme(imgId);
+    renderControls()
     renderMeme();
     setInputText();
     document.querySelector('.meme-editor').classList.remove('hide');

@@ -23,7 +23,8 @@ function renderKeywords() {
         else strHTML += `<a id="${key}" href="#" onclick="onSetFilterBy(this.id)" data-trans="kw-${key}" style="font-size:${size}">${key}</a> `
         count++;
     }
-    strHTML += `<a class="show-more" href="#" onclick="onShowKeywords()" data-trans="kw-show">show more...</a> `
+    var txt = (getCurrLang() === 'en') ? 'show more...' : 'הצג עוד...';
+    strHTML += `<a class="show-more" href="#" onclick="onShowKeywords()">${txt}</a> `
     document.querySelector('.growing-keywords').innerHTML = strHTML;
     setKeywordsListeners();
 }
@@ -33,6 +34,8 @@ function onShowKeywords() {
     if (elShowLink.innerText.toLowerCase() === 'show more...' || elShowLink.innerText === 'הצג עוד...') {
         showKeywords(getKeywordsCount());
         renderKeywords();
+        console.log(getCurrLang());
+        
         if (getCurrLang() === 'en') document.querySelector('.show-more').innerText = 'show less...'
         else document.querySelector('.show-more').innerText = 'הצג פחות...'
     } else {
@@ -41,7 +44,7 @@ function onShowKeywords() {
         if (getCurrLang() === 'en') document.querySelector('.show-more').innerText = 'show more...'
         else document.querySelector('.show-more').innerText = 'הצג עוד...'
     }
-    // setLang('he')
+    doTrans();
 }
 
 function setKeywordsListeners() {
