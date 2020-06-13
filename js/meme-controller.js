@@ -24,9 +24,8 @@ function onInit() {
     gElCanvas = document.querySelector('#canvas');
     gCtx = gElCanvas.getContext('2d');
     setTouchListeners();
-    resizeCanvas(); // sets the canvas size according to it's container
-    resetMeme(); // sets the lines back to default settings
-   // renderMeme(); // draws the selected meme
+    resizeCanvas();
+    resetMeme();
     document.querySelector('.meme-editor').classList.add('hide');
     document.querySelector('.memes').classList.add('hide');
     doTrans();
@@ -49,8 +48,10 @@ function onManuellyType(ev) {
     renderMeme();
 }
 
-function onSetLang(lang) {
-    setLang(lang);
+function onSetLang(elLang) {
+    document.querySelectorAll('.trans a').forEach(elLang => elLang.classList.remove('active-lang'));
+    elLang.classList.add('active-lang');
+    setLang(elLang.id);
 }
 
 function setTouchListeners() {
@@ -167,25 +168,15 @@ function drawLines() {
     })
 }
 
-
 function drawMeme(imgId) {
     var img = new Image()
     if (isNaN(imgId)) img.src = imgId;
     else img.src = `./meme-imgs/${imgId}.jpg`;
     img.onload = () => {
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, (img.height * gElCanvas.width) / img.width);
-        renderLines();
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+        renderLines()
     }
 }
-// function drawMeme(imgId) {
-//     var img = new Image()
-//     if (isNaN(imgId)) img.src = imgId;
-//     else img.src = `./meme-imgs/${imgId}.jpg`;
-//     img.onload = () => {
-//         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-//         renderLines()
-//     }
-// }
 
 function downloadCanvas(elLink) {
     const data = gElCanvas.toDataURL()

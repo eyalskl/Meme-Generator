@@ -112,7 +112,24 @@ a {
 
 .lang {
     width: 2rem;
+    height: 1.5rem;
+    margin: 5px;
     cursor: pointer;
+}
+
+.trans a {
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+
+.trans a.active-lang {
+    opacity: 1;
+    background-color: rgb(207, 207, 207);
+}
+
+.trans a:hover {
+    opacity: 1;
 }
 
 .main-nav li a.active {
