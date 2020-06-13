@@ -6,7 +6,7 @@ function uploadImg(elForm, ev) {
     function onSuccess(uploadedImgUrl) {
         uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
         document.querySelector('.share-container a').href = `https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}`;
-        document.querySelector('.share-container').classList.toggle('hide');
+        hideShareBtns();
     }
     doUploadImg(elForm, onSuccess);
 }
@@ -17,16 +17,19 @@ function doUploadImg(elForm, onSuccess) {
         method: 'POST',
         body: formData
     })
-    .then(function (res) {
-        return res.text()
-    })
-    .then(onSuccess)
-    .catch(function (err) {
-        console.error(err)
-    })
-    
+        .then(function (res) {
+            return res.text()
+        })
+        .then(onSuccess)
+        .catch(function (err) {
+            console.error(err)
+        })
+
 }
 
 function hideShareBtns() {
     document.querySelector('.share-container').classList.toggle('hide');
+    document.querySelector('.info').classList.toggle('hide');
+    gCanShare = !gCanShare;
+    renderMeme();
 }

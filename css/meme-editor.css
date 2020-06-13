@@ -1,4 +1,3 @@
-
 /* MEME EDITOR */
 
 .canvas-container {
@@ -30,11 +29,12 @@ canvas {
 
 .edit-tools input[name="lineText"] {
     margin-top: 1.6rem;
-    padding: 0.7rem;
+    padding: 0.65rem;
     margin: 10px auto;
     box-shadow: 2px 2px 4px black;
     outline: none;
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family: 'Days One', sans-serif;
+    font-size: .8rem;
 }
 
 .edit-tools button {
@@ -44,11 +44,12 @@ canvas {
 }
 
 .switch-lines-btn {
-    height: 2.6rem;
-    width: 2.6rem;
-    font-size: 1.2rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    font-size: 1.1rem;
     margin-inline-start: .5rem;
 }
+
 
 .lines-add-remove button {
     background-color: #000;
@@ -72,7 +73,6 @@ canvas {
     margin-bottom: 0.8rem;
 }
 
-
 .font-color-size label {
     background-color: rgb(216, 216, 216);
     border: 1px solid rgba(0, 0, 0, 0.384);
@@ -84,21 +84,26 @@ canvas {
     cursor: pointer;
 }
 
+.font-size {
+    font-family: 'Days One', sans-serif;
+}
+
 input[type="color"] {
     -webkit-appearance: none;
     outline: none;
-	border: none;
-	width: 0em;
+    border: none;
+    width: 0em;
     height: 0em;
     cursor: pointer;
     background-color: transparent;
+}
 
-}
 input[type="color"]::-webkit-color-swatch-wrapper {
-	padding: 0;
+    padding: 0;
 }
+
 input[type="color"]::-webkit-color-swatch {
-	border: none;
+    border: none;
     border-radius: 50%;
 }
 
@@ -169,6 +174,7 @@ a.download-meme:hover {
     font-size: .65rem;
     padding: 5px;
 }
+
 .info p {
     font-family: 'Days One', sans-serif;
     margin: 2px auto;
@@ -179,11 +185,10 @@ a.download-meme:hover {
     margin: 1px 0;
 }
 
-
 @media (max-width: 860px) {
     .meme-editor {
         flex-direction: column;
-        height: 800px;
+        height: 900px;
         margin-bottom: 1rem;
     }
     .canvas-container {

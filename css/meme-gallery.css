@@ -69,12 +69,12 @@ a.upload-btn:hover {
 
 .meme-gallery {
     margin-top: 20px;
-    padding-inline-start: 5rem;
+    /* padding-inline-start: 5rem; */
 }
 
 .meme-gallery img, .saved-memes-container img {
-    width: 190px;
-    height: 190px;
+    width: 222px;
+    height: 222px;
     margin: .4rem;
     border: 1px solid black;
     border-radius: 1rem;
@@ -114,8 +114,8 @@ a.upload-btn:hover {
 
 @media (max-width: 1050px) {
     .meme-gallery img, .memes img {
-        width: 215px;
-        height: 215px;
+        width: 250px;
+        height: 250px;
     }
 }
 
@@ -125,8 +125,8 @@ a.upload-btn:hover {
         padding-inline-start: 4rem;
     }
     .meme-gallery img, .memes img {
-        width: 250px;
-        height: 250px;
+        width: 265px;
+        height: 265px;
         margin: .25rem;
     }
 }
@@ -148,6 +148,11 @@ a.upload-btn:hover {
         width: 200px;
         font-size: 1rem;
     }
+    a.upload-btn {
+        font-size: 1rem;
+        width: 190px;
+        text-align: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -156,8 +161,9 @@ a.upload-btn:hover {
         padding-inline-start: 4rem;
     }
     .meme-gallery img, .memes img {
-        width: 170px;
-        height: 170px;
+        width: 140px;
+        height: 140px;
+        /* margin-inline-start: 1rem; */
     }
     .search-bar {
         text-align: center;
@@ -167,32 +173,33 @@ a.upload-btn:hover {
     .search-bar input {
         padding: .4rem;
         width: 130px;
+        font-size: .5rem;
     }
-
-}
-
-@media (max-width: 480px) {
-    .meme-gallery img, .memes img {
-        width: 135px;
-        height: 135px;
-        margin-inline-start: 1rem;
+    a.upload-btn {
+        font-size: .8rem;
+        width: 130px;
+        text-align: center;
     }
 }
 
 @media (max-width: 380px) {
+    .container {
+        max-width: 320px;
+    }
+    .meme-gallery {
+        padding-inline-start: 1rem;
+    }
+    a.upload-btn {
+        font-size: .7rem;
+        width: 115px;
+    }
     .meme-gallery img, .memes img {
-        width: 120px;
-        height: 120px;
+        width: 275px;
+        height: 275px;
     }
     .search-bar input {
         padding: 0.4rem;
-        width: 160px;
+        width: 200px;
     }
 }
 
-@media (max-width: 380px) {
-    .meme-gallery img, .memes img {
-        width: 200px;
-        height: 200px;
-    }
-}

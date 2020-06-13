@@ -8,13 +8,13 @@
     <script src="https://kit.fontawesome.com/f4b51a9e99.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Days+One&family=Frijole&display=swap"
         rel="stylesheet">
-    <link rel="shortcut icon" href="icons/title.png" />
+    <link rel="shortcut icon" href="bg-imgs/title.png" />
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/meme-editor.css">
     <link rel="stylesheet" href="css/meme-gallery.css">
 </head>
 
-<body onload="onInit()" onkeydown="onManuellyType(event)" class="fixed-bg">
+<body onload="onInit()" onkeydown="onManuellyType(event)" onresize="resizeCanvasOnResize()" class="fixed-bg">
     <!-- onresize="resizeCanvasOnResize()" -->
     <div class="screen" onclick="toggleMenu()"></div>
 
@@ -34,23 +34,23 @@
             <nav class="nav">
                 <div class="nav-container container flex justify-between align-center">
                     <div class="logo">
-                        <a title="Created by Eyal.B" href="#" onclick="openGallery()"">Meme<span>_</span>Gen<span>.</span></a>
+                        <a title="Created by Eyal.B" onclick="openGallery2()" href="#">Meme<span>_</span>Gen<span>.</span></a>
                     </div>
-
-            <button class=" btn-menu" onclick="toggleMenu()" hidden>☰</button>
+                    
+                    <button class=" btn-menu" onclick="toggleMenu()" hidden>☰</button>
 
                             <ul class=" main-nav flex clean-list">
                                 <li>
-                                    <a href="#" onclick="openGallery()">Gallery</a>
+                                    <a href="#" class="nav-link gallery-link active" onclick="openGallery(this)">Gallery</a>
                                 </li>
                                 <li>
-                                    <a href="#" onclick="openSavedMemes()">Memes</a>
+                                    <a href="#"class="nav-link" onclick="openSavedMemes(this)">Memes</a>
                                 </li>
                                 <li>
-                                    <a href="#" onclick="openThemes()">Themes</a>
+                                    <a href="#about" class="nav-link" onclick="onSetActive(this)">About</a>
                                 </li>
                                 <li>
-                                    <a href="#">About</a>
+                                    <a href="#" class="theme-link" onclick="openThemes(this)">Themes</a>
                                 </li>
                             </ul>
                     </div>
@@ -82,7 +82,7 @@
                         onmousemove="dragLines(event)" onmouseup="toggleDrag()"> </canvas>
                 </div>
                 <div class="edit-tools">
-                    <input type="text" name="lineText" placeholder="Insert Text Here"
+                    <input type="text" name="lineText" placeholder="Insert Text here or Type"
                         oninput="onSetLineText(this.value)">
                     <button class="switch-lines-btn" title="Switch Lines" onclick="onSwitchLine(event)"><i
                             class="fas fa-text-height"></i></button>
@@ -151,9 +151,10 @@
                     </form>
                     <div class="info">
                         <h3>On Desktop :</h3>
-                        <p>'Escape' - to go back to Gallery</p>
-                        <p>'Tab' - to switch lines</p>
-                        <p>'Up/Down Arrows' - to change line Height</p>
+                        <p>'Escape' - return to Gallery</p>
+                        <p>'Tab' - to Switch Lines</p>
+                        <p>'Up/Down Arrows' - to change Line Height</p>
+                        <p>'Insert'/'Delete' - to Add/Remove Line</p>
                     </div>
 
                 </div>
@@ -169,20 +170,20 @@
                             oninput="onSetFilterBy(this.value)">
                         <div class="upload">
                             <a class="upload-btn">
-                            <label for="image"><i class="fas fa-upload"></i> Upload Image </label>
-                            <input id="image" type="file" class="file-input-btn" name="image"
-                                onchange="onImgInput(event)" />
+                                <label for="image"><i class="fas fa-upload"></i> Upload Image </label>
+                                <input id="image" type="file" class="file-input-btn" name="image"
+                                    onchange="onImgInput(event)" />
                             </a>
-                            </div>
+                        </div>
                     </div>
-                    <span class="growing-keywords"></span>
+                    <div class="growing-keywords"></div>
                 </div>
                 <div class="gallery"></div>
             </section>
 
         </main>
 
-        <footer class="main-footer">
+        <footer id="about" class="main-footer">
             <div class="footer-container container flex align-center">
                 <h2><i class="fas fa-copyright"></i> Eyal<span>_</span>Barkai<span>.</span></h2>
                 <div class="socials flex">
