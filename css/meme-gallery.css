@@ -108,7 +108,6 @@ a.upload-btn:hover {
 }
 
 .meme-gallery img:hover, .saved-memes-container img:hover {
-    opacity: 0.85;
     border: 1px double white;
 }
 

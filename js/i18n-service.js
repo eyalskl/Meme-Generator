@@ -1,12 +1,4 @@
 var gTrans = {
-    'lang-en': {
-        en: '<img class="lang" src="trans-imgs/en.png" />',
-        he: '<img class="lang" src="trans-imgs/en.png" />'
-    },
-    'lang-he': {
-        en: '<img class="lang" src="trans-imgs/he.png" />',
-        he: '<img class="lang" src="trans-imgs/he.png" />'
-    },
     logo: {
         en: `Meme<span>_</span>Gen<span>.</span>`,
         he: `מחולל<span>_</span>הממים<span>.</span>`

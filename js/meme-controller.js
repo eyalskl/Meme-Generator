@@ -5,12 +5,12 @@ var gCtx;
 var gCanDrag;
 var gCanShare = false;
 var gThemes = [
-    { name: 'default', url: 'bg-imgs/default.jpg', navColor: 'rgba(230, 230, 230, 0.781)' },
-    { name: 'cats', url: 'bg-imgs/cats.jpg', navColor: '#88715f' },
-    { name: 'politic', url: 'bg-imgs/politic.jpg', navColor: '#e8eced' },
-    { name: 'anime', url: 'bg-imgs/anime.jpg', navColor: 'rgb(254, 80, 87)' },
-    { name: 'kid', url: 'bg-imgs/kid.jpg', navColor: '#05b84f' },
-    { name: 'dogs', url: 'bg-imgs/dogs.jpg', navColor: '#4d342d' }
+    { name: 'default', url: 'imgs/bg-imgs/default.jpg', navColor: 'rgba(230, 230, 230, 0.781)' },
+    { name: 'cats', url: 'imgs/bg-imgs/cats.jpg', navColor: '#88715f' },
+    { name: 'politic', url: 'imgs/bg-imgs/politic.jpg', navColor: '#e8eced' },
+    { name: 'anime', url: 'imgs/bg-imgs/anime.jpg', navColor: 'rgb(254, 80, 87)' },
+    { name: 'kid', url: 'imgs/bg-imgs/kid.jpg', navColor: '#05b84f' },
+    { name: 'dogs', url: 'imgs/bg-imgs/dogs.jpg', navColor: '#4d342d' }
 ];
 
 
@@ -27,14 +27,12 @@ function onInit() {
     resizeCanvas();
     resetMeme();
     document.querySelector('.meme-editor').classList.add('hide');
-    document.querySelector('.memes').classList.add('hide');
     doTrans();
 }
 
 function onManuellyType(ev) {
     if (document.querySelector('.meme-editor').classList.contains('hide')) return;
-    var line = getMeme().lines[getMeme().selectedLineIdx]
-    if (line.isSticker) return;
+    var line = getCurrLine()
     if (ev.key === ' ' || ev.key === 'ArrowUp' || ev.key === 'ArrowDown') ev.preventDefault();
     if (ev.key === 'Escape') openGallery();
     if (ev.key === 'Tab') onSwitchLine(ev);
@@ -42,9 +40,11 @@ function onManuellyType(ev) {
     if (ev.key === 'Insert') onAddLine();
     if (ev.key === 'ArrowUp') onChangeLineHeight(-10);
     if (ev.key === 'ArrowDown') onChangeLineHeight(10);
-    if (ev.key === 'Backspace') line.txt = backspace(line.txt);
+    if (line.isSticker) return;
+    if (ev.key === 'Backspace') line.txt = line.txt.slice(0, -1); //todo: check double types
     else if (ev.key.length > 1) return;
     else line.txt += ev.key;
+    // document.querySelector('[name="lineText"]').value = line.txt;
     renderMeme();
 }
 
@@ -52,9 +52,9 @@ function onSetLang(elLang) {
     document.querySelectorAll('.trans a').forEach(elLang => elLang.classList.remove('active-lang'));
     elLang.classList.add('active-lang');
     setLang(elLang.id);
-    
-}
 
+}
+//todo: move to html
 function setTouchListeners() {
     gElCanvas.addEventListener('touchstart', (ev) => {
         ev.preventDefault()
@@ -69,16 +69,9 @@ function setTouchListeners() {
     })
 }
 
-function backspace(str) {
-    var backspacedStr = '';
-    for (var i = 0; i < str.length - 1; i++) {
-        backspacedStr += str[i];
-    }
-    return backspacedStr;
-}
 
 function renderControls() {
-    var line = getMeme().lines[getMeme().selectedLineIdx];
+    var line = getCurrLine();
     document.querySelector('[name="fontFamily"]').value = line.font;
     document.querySelector('[name="strokeColor"]').value = line.strokeColor;
     document.querySelector('[name="fontSize"]').value = line.size;
@@ -99,8 +92,7 @@ function stopDrag() {
 function dragLines(ev) {
     ev.preventDefault();
     if (!gCanDrag) return;
-    ev.preventDefault();
-    const line = getMeme().lines[getMeme().selectedLineIdx];
+    const line = getCurrLine();
     if (ev.type === 'touchmove') {
         var touchPos = getTouchPos(gElCanvas, ev);
         line.x = touchPos.x;
@@ -112,11 +104,11 @@ function dragLines(ev) {
     renderMeme()
 }
 
-function getTouchPos(canvas, mouseEvent) {
+function getTouchPos(canvas, touchEvent) {
     var rect = canvas.getBoundingClientRect();
     return {
-        x: mouseEvent.touches[0].clientX - rect.left,
-        y: mouseEvent.touches[0].clientY - rect.top
+        x: touchEvent.touches[0].clientX - rect.left,
+        y: touchEvent.touches[0].clientY - rect.top
     };
 }
 
@@ -125,9 +117,9 @@ function onWheelFontSize(ev) {
     if (ev.wheelDelta < 0) changeFontSize(-2);
     else changeFontSize(2);
     renderMeme();
-    if (getMeme().lines[getMeme().selectedLineIdx].size < 0) return;
-    document.querySelector('.font-size').innerText = getMeme().lines[getMeme().selectedLineIdx].size
-    document.querySelector('[name="fontSize"]').value = getMeme().lines[getMeme().selectedLineIdx].size;
+    if (getCurrLine().size < 0) return;
+    document.querySelector('.font-size').innerText = getCurrLine().size
+    document.querySelector('[name="fontSize"]').value = getCurrLine().size;
 }
 
 function renderLines() {
@@ -144,14 +136,6 @@ function resizeCanvas() {
     gElCanvas.height = elContainer.offsetHeight;
 }
 
-function resizeCanvasOnResize() {
-    if (document.querySelector('.meme-editor').classList.contains('hide')) return;
-    var elContainer = document.querySelector('.canvas-container');
-    gElCanvas.width = elContainer.offsetWidth;
-    gElCanvas.height = elContainer.offsetHeight;
-    resetMeme();
-    renderMeme();
-}
 
 function drawLines() {
     const meme = getMeme();
@@ -170,12 +154,12 @@ function drawLines() {
 }
 
 function drawMeme(imgId) {
-    var img = new Image()
-    if (isNaN(imgId)) img.src = imgId;
-    else img.src = `./meme-imgs/${imgId}.jpg`;
-    img.onload = () => {
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-        renderLines()
+    var elImg = new Image()
+    if (isNaN(imgId)) elImg.src = imgId;
+    else elImg.src = `imgs/meme-imgs/${imgId}.jpg`;
+    elImg.onload = () => {
+        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height);
+        drawLines()
     }
 }
 
@@ -185,10 +169,7 @@ function downloadCanvas(elLink) {
     elLink.download = 'my-img.jpg'
 }
 
-function onSetLineText(lineText) {
-    setLineText(lineText);
-    renderMeme();
-}
+
 
 function onSetFontFamily(fontFamily) {
     setFontFamily(fontFamily);
@@ -289,12 +270,13 @@ function onSwitchLine(ev) {
         else offsetY = ev.offsetY;
         getMeme().lines.forEach((line, idx) => {
             if (idx === getMeme().selectedLineIdx) gCanDrag = true;
-            else if (offsetY >= (line.y - line.size) && offsetY <= line.y) {
+            if (offsetY >= (line.y - line.size) && offsetY <= line.y) {
                 getMeme().selectedLineIdx = idx;
                 renderMeme();
                 gCanDrag = true;
             }
         })
+        document.querySelector('[name="lineText"]').value = getCurrLine().txt;
     }
     renderControls();
 }
@@ -309,10 +291,14 @@ function onAddLine() {
     renderMeme();
     setInputText()
 }
+function onSetLineText(lineText) {
+    setLineText(lineText);
+    renderMeme();
+}
 
 function setInputText() {
     let elLineInput = document.querySelector('[name="lineText"]');
-    elLineInput.value = getMeme().lines[getMeme().selectedLineIdx].txt;
+    elLineInput.value = getCurrLine().txt;
     elLineInput.focus()
 }
 
@@ -323,7 +309,6 @@ function onDownloadMeme(elLink) {
     hideShareBtns();
     gCanShare = false;
     renderMeme();
-
 }
 
 function onSaveMeme() {
@@ -365,13 +350,15 @@ function onSetActive(elLink) {
 
 
 function onSetFilterBy(keyword) {
-    setFilterBy(keyword);
+    setFilterBy(keyword.toLowerCase());
     renderGallery();
+    enlargeKeyword(keyword.toLowerCase());
 }
 
 function onImgInput(ev) {
     loadImageFromInput(ev, renderCanvas)
 }
+
 function loadImageFromInput(ev, onImageReady) {
     var reader = new FileReader();
 

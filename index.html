@@ -6,15 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme_Gen.</title>
     <script src="https://kit.fontawesome.com/f4b51a9e99.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Days+One&family=Frijole&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Days+One&family=Frijole&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="bg-imgs/title.png" />
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/meme-editor.css">
     <link rel="stylesheet" href="css/meme-gallery.css">
 </head>
 
-<body onload="onInit()" onkeydown="onManuellyType(event)" onresize="resizeCanvasOnResize()" class="fixed-bg">
+<body onload="onInit()" onkeydown="onManuellyType(event)" class="fixed-bg">
 
     <div class="screen" onclick="toggleMenu()"></div>
 
@@ -34,13 +33,11 @@
             <nav class="nav">
                 <div class="nav-container container flex justify-between align-center">
                     <div class="logo">
-                        <a title="Created by Eyal.B" onclick="openGallery2()" href="#"
-                            data-trans="logo">Meme<span>_</span>Gen<span>.</span></a>
+                        <a title="Created by Eyal.B" onclick="openGallery2()" href="#" data-trans="logo">Meme<span>_</span>Gen<span>.</span></a>
                     </div>
                     <div class="trans flex">
-                        <a id="en" class="active-lang" onclick="onSetLang(this)" data-trans="lang-en"></a>
-                        <br>
-                        <a id="he" class="" onclick="onSetLang(this)" data-trans="lang-he"></a>
+                        <a id="en" class="active-lang" onclick="onSetLang(this)"><img class="lang" src="imgs/trans-imgs/en.png" /></a>
+                        <a id="he" onclick="onSetLang(this)"><img class="lang" src="imgs/trans-imgs/he.png" /></a>
                     </div>
 
                     <button class=" btn-menu" onclick="toggleMenu()" hidden>☰</button>
@@ -48,28 +45,23 @@
 
                     <ul class="main-nav flex clean-list">
                         <li>
-                            <a href="#" class="nav-link gallery-link active" data-trans="gallery-link"
-                                onclick="openGallery(this)">Gallery</a>
+                            <a href="#" class="nav-link gallery-link active" data-trans="gallery-link" onclick="openGallery(this)">Gallery</a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link" data-trans="memes-link"
-                                onclick="openSavedMemes(this)">Memes</a>
+                            <a href="#" class="nav-link" data-trans="memes-link" onclick="openSavedMemes(this)">Memes</a>
                         </li>
                         <li>
-                            <a href="#about" class="nav-link" data-trans="about-link"
-                                onclick="onSetActive(this)">About</a>
+                            <a href="#about" class="nav-link" data-trans="about-link" onclick="onSetActive(this)">About</a>
                         </li>
                         <li>
-                            <a href="#" class="theme-link" data-trans="themes-link"
-                                onclick="openThemes(this)">Themes</a>
+                            <a href="#" class="theme-link" data-trans="themes-link" onclick="openThemes(this)">Themes</a>
                         </li>
                     </ul>
                 </div>
             </nav>
 
             <section class="themes hide">
-                <button id="default" class="selected-theme" onclick="onSetTheme(this)"
-                    data-trans="theme-default">Default</button>
+                <button id="default" class="selected-theme" onclick="onSetTheme(this)" data-trans="theme-default">Default</button>
                 <button id="cats" onclick="onSetTheme(this)" data-trans="theme-cats">Cats</button>
                 <button id="politic" onclick="onSetTheme(this)" data-trans="theme-politic">Politic</button>
                 <button id="anime" onclick="onSetTheme(this)" data-trans="theme-anime">Anime</button>
@@ -79,7 +71,7 @@
             </section>
 
             <!-- SAVED MEMES SECTION -->
-            <section class="memes container">
+            <section class="memes container hide">
                 <h2 data-trans="saved-memes">My saved<span>_</span>Memes<span>.</span></h2>
                 <div class="saved-memes-container flex wrap">
 
@@ -90,13 +82,11 @@
             <!-- MEME EDITOR SECTION -->
             <section class="meme-editor container flex">
                 <div class="canvas-container">
-                    <canvas id="canvas" onmousewheel="onWheelFontSize(event)" onmousedown="onSwitchLine(event)"
-                        onmousemove="dragLines(event)" onmouseup="toggleDrag()"> </canvas>
+                    <canvas id="canvas" onmousewheel="onWheelFontSize(event)" onmousedown="onSwitchLine(event)" onmousemove="dragLines(event)" onmouseup="toggleDrag()"> </canvas>
                 </div>
                 <div class="edit-tools">
-                    <input type="text" name="lineText" placeholder="Insert Text here or Type"
-                        oninput="onSetLineText(this.value)">
-                    <button class="switch-lines-btn" title="Switch Lines" onclick="onSwitchLine(event)"><i
+                    <input type="text" name="lineText" placeholder="Insert Text here or Type" oninput="onSetLineText(this.value)">
+                    <button class="switch-lines-btn" value="0" title="Switch Lines" onclick="onSwitchLines(event)"><i
                             class="fas fa-text-height"></i></button>
                     <div class="lines-add-remove">
                         <button title="Add Line" onclick="onAddLine()"><i class="fas fa-plus"></i></button>
@@ -124,12 +114,10 @@
                     </div>
                     <div class="font-color-size">
                         <label for="fontColor" title="Text Color"><i class="fas fa-palette"></i></label>
-                        <input id="fontColor" type="color" name="fontColor" value="#ffffff"
-                            oninput="onSetFontColor(this.value)">
+                        <input id="fontColor" type="color" name="fontColor" value="#ffffff" oninput="onSetFontColor(this.value)">
                         <label for="strokeColor" title="Stroke Color"><i class="fas fa-paint-roller"></i></label>
                         <input id="strokeColor" type="color" name="strokeColor" oninput="onSetStrokeColor(this.value)">
-                        <input type="range" name="fontSize" min="1" max="100" value="30" title="Font Size"
-                            onchange="onSetFontSize(this.value)"> <span class="font-size">30</span>
+                        <input type="range" name="fontSize" min="1" max="100" value="30" title="Font Size" onchange="onSetFontSize(this.value)"> <span class="font-size">30</span>
                     </div>
                     <div class="align-text">
                         <button id="right" onclick="onSetAlignText(this)" title="Align Left">
@@ -153,12 +141,9 @@
                         <input name="img" id="imgData" type="hidden" />
                         <button class="share-btn" type="submit" title="Share!"><i class="fas fa-share-alt"></i></button>
                         <div class="share-container hide">
-                            <a class="download-meme facebook" onclick="hideShareBtns()" href="#"
-                                title="Share on Facebook!" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                            <a class="download-meme download" title="Download Meme!" href="#"
-                                onclick="onDownloadMeme(this)" download=""><i class="fas fa-download"></i></a>
-                            <a class="download-meme save" title="Save to my Memes!" href="#"
-                                onclick="onSaveMeme(this)"><i class="fas fa-save"></i></a>
+                            <a class="download-meme facebook" onclick="hideShareBtns()" href="#" title="Share on Facebook!" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a class="download-meme download" title="Download Meme!" href="#" onclick="onDownloadMeme(this)" download=""><i class="fas fa-download"></i></a>
+                            <a class="download-meme save" title="Save to my Memes!" href="#" onclick="onSaveMeme(this)"><i class="fas fa-save"></i></a>
                         </div>
                     </form>
                     <div class="info">
@@ -178,14 +163,12 @@
             <section class="meme-gallery container flex wrap">
                 <div class="search-bar flex align-center">
                     <div class="search-upload flex wrap">
-                        <input type="search" list="keywords" name="keyword" data-trans="search"
-                            placeholder="Search by keywords..." oninput="onSetFilterBy(this.value)">
+                        <input type="search" list="keywords" name="keyword" data-trans="search" placeholder="Search by keywords..." oninput="onSetFilterBy(this.value)">
                         <div class="upload">
                             <a class="upload-btn">
                                 <label for="image" data-trans="upload"><i class="fas fa-upload"></i> Upload Image
                                 </label>
-                                <input id="image" type="file" class="file-input-btn" name="image"
-                                    onchange="onImgInput(event)" />
+                                <input id="image" type="file" class="file-input-btn" name="image" onchange="onImgInput(event)" />
                             </a>
                         </div>
                     </div>
@@ -201,8 +184,7 @@
                 <h2 data-trans="footer-name"><i class="fas fa-copyright"></i> Eyal<span>_</span>Barkai<span>.</span>
                 </h2>
                 <div class="socials flex">
-                    <a class="fb" title="Look me up on Facebook!" href="https://www.facebook.com/eyal.barkai.9"
-                        target="_blank">
+                    <a class="fb" title="Look me up on Facebook!" href="https://www.facebook.com/eyal.barkai.9" target="_blank">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                     <a class="gh" title="My Github" href="https://github.com/eyalskl" target="_blank">

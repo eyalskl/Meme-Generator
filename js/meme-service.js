@@ -44,24 +44,24 @@ function resetMeme() {
 
 
 function createImgs() {
-    gImgs.push(_createImg(1, `meme-imgs/1.jpg`, ['popular', 'men']));
-    gImgs.push(_createImg(2, `meme-imgs/2.jpg`, ['love', 'puppy', 'dog', 'animal', 'cute']));
-    gImgs.push(_createImg(3, `meme-imgs/3.jpg`, ['baby', 'sleep', 'cute']));
-    gImgs.push(_createImg(4, `meme-imgs/4.jpg`, ['cat', 'animal', 'sleep']));
-    gImgs.push(_createImg(5, `meme-imgs/5.jpg`, ['success', 'baby', 'cute']));
-    gImgs.push(_createImg(6, `meme-imgs/6.jpg`, ['wonder', 'men']));
-    gImgs.push(_createImg(7, `meme-imgs/7.jpg`, ['baby', 'surprised']));
-    gImgs.push(_createImg(8, `meme-imgs/8.jpg`, ['wonder', 'smile', 'men']));
-    gImgs.push(_createImg(9, `meme-imgs/9.jpg`, ['laugh', 'popular', 'baby', 'cute']));
-    gImgs.push(_createImg(10, `meme-imgs/10.jpg`, ['laugh', 'obama']));
-    gImgs.push(_createImg(11, `meme-imgs/11.jpg`, ['kiss', 'men']));
-    gImgs.push(_createImg(12, `meme-imgs/12.jpg`, ['point', 'men']));
-    gImgs.push(_createImg(13, `meme-imgs/13.jpg`, ['cheers', 'smile', 'dicaprio']));
-    gImgs.push(_createImg(14, `meme-imgs/14.jpg`, ['amazed', 'popular', 'matrix']));
-    gImgs.push(_createImg(15, `meme-imgs/15.jpg`, ['popular', 'men']));
-    gImgs.push(_createImg(16, `meme-imgs/16.jpg`, ['awkward', 'lol', 'bald', 'men']));
-    gImgs.push(_createImg(17, `meme-imgs/17.jpg`, ['point', 'men', 'russia']));
-    gImgs.push(_createImg(18, `meme-imgs/18.jpg`, ['toy story', 'point', 'popular']));
+    gImgs.push(_createImg(1, `imgs/meme-imgs/1.jpg`, ['popular', 'men']));
+    gImgs.push(_createImg(2, `imgs/meme-imgs/2.jpg`, ['love', 'puppy', 'dog', 'animal', 'cute']));
+    gImgs.push(_createImg(3, `imgs/meme-imgs/3.jpg`, ['baby', 'sleep', 'cute']));
+    gImgs.push(_createImg(4, `imgs/meme-imgs/4.jpg`, ['cat', 'animal', 'sleep']));
+    gImgs.push(_createImg(5, `imgs/meme-imgs/5.jpg`, ['success', 'baby', 'cute']));
+    gImgs.push(_createImg(6, `imgs/meme-imgs/6.jpg`, ['wonder', 'men']));
+    gImgs.push(_createImg(7, `imgs/meme-imgs/7.jpg`, ['baby', 'surprised']));
+    gImgs.push(_createImg(8, `imgs/meme-imgs/8.jpg`, ['wonder', 'smile', 'men']));
+    gImgs.push(_createImg(9, `imgs/meme-imgs/9.jpg`, ['laugh', 'popular', 'baby', 'cute']));
+    gImgs.push(_createImg(10, `imgs/meme-imgs/10.jpg`, ['laugh', 'obama']));
+    gImgs.push(_createImg(11, `imgs/meme-imgs/11.jpg`, ['kiss', 'men']));
+    gImgs.push(_createImg(12, `imgs/meme-imgs/12.jpg`, ['point', 'men']));
+    gImgs.push(_createImg(13, `imgs/meme-imgs/13.jpg`, ['cheers', 'smile', 'dicaprio']));
+    gImgs.push(_createImg(14, `imgs/meme-imgs/14.jpg`, ['amazed', 'popular', 'matrix']));
+    gImgs.push(_createImg(15, `imgs/meme-imgs/15.jpg`, ['popular', 'men']));
+    gImgs.push(_createImg(16, `imgs/meme-imgs/16.jpg`, ['awkward', 'lol', 'bald', 'men']));
+    gImgs.push(_createImg(17, `imgs/meme-imgs/17.jpg`, ['point', 'men', 'russia']));
+    gImgs.push(_createImg(18, `imgs/meme-imgs/18.jpg`, ['toy story', 'point', 'popular']));
 }
 
 function setUploadImg(img) {
@@ -77,6 +77,10 @@ function getMeme() {
     return gMeme;
 }
 
+function getCurrLine() {
+    return gMeme.lines[gMeme.selectedLineIdx];
+}
+
 function getKeywordsCount() {
     return gKeywordsCount;
 }
@@ -88,8 +92,13 @@ function raiseKeywordsCount(key) {
     gKeywords[key]++;
 }
 
-function showKeywords(keywordsToShow) {
-    gKeywordsToShow = keywordsToShow;
+function setFilterBy(keyword) {
+    gFilterBy = keyword;
+    raiseKeywordsCount(keyword)
+}
+
+function showKeywords(isAllShown) {
+    gKeywordsToShow = (isAllShown) ? gKeywordsCount : 5;
 }
 
 function getImgs() {
@@ -174,7 +183,7 @@ function addLine(txt = 'insert text here', isSticker = false) {
         align: 'center',
         color: '#ffffff',
         strokeColor: '#000000',
-        y: gElCanvas.width / 2,
+        y: gElCanvas.height / 2,
         x: gElCanvas.width / 2,
         isSticker,
     });
@@ -186,9 +195,7 @@ function saveMeme(savedMeme) {
     saveToStorage(KEY, gSavedMemes)
 }
 
-function setFilterBy(keyword) {
-    gFilterBy = keyword;
-}
+
 
 function createKeywordMap() {
     const keywordMap = gImgs.reduce((keywordMap, img) => {

@@ -10,7 +10,7 @@ html {
 
 body {
     margin: 0;
-    background: url('../bg-imgs/default.jpg');
+    background: url('../imgs/bg-imgs/default.jpg');
     transition: background .7s;
 }
 
@@ -27,13 +27,14 @@ button {
     font-family: 'Days One', sans-serif;
 }
 
-/* font-family: 'Black Ops One', cursive;
-font-family: 'Days One', sans-serif;
-font-family: 'Frijole', cursive; */
 
 a {
     text-decoration: none;
     color: inherit;
+}
+
+ul {
+    padding: 0;
 }
 
 /* SCREEN */
@@ -62,7 +63,7 @@ a {
 
 .logo {
     font-family: 'Days One', sans-serif;
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: rgb(121, 121, 121);
     text-shadow: 2px 2px 2px white;
     transition: .7s;
@@ -89,6 +90,10 @@ a {
     border-left: 1px solid black;
 }
 
+.rtl .main-nav li:first-child {
+    border-right: 1px solid black;
+}
+
 .main-nav li a {
     background-color: rgba(163, 163, 255, 0.473);
     color: black;
@@ -104,10 +109,8 @@ a {
 }
 
 .main-nav li a:hover {
-    /* background-color: rgba(163, 163, 255); */
     color: white;
     text-shadow: 3px 3px 2px rgb(0, 0, 0);
-    /* box-shadow: inset 0px 6px white; */
 }
 
 .lang {
@@ -156,20 +159,12 @@ a {
 
 .themes button:last-of-type {
     background-color: rgb(170, 170, 170);
-    color: white;
+    color: rgb(194, 187, 187);
     width: 2rem;
 }
 
+
 /* FOOTER */
-
-.page-container {
-    position: relative;
-    min-height: 100vh;
-}
-
-.main-content {
-    padding-bottom: 5rem;
-}
 
 .main-footer {
     background-color: rgba(126, 146, 255, 0.589);
@@ -226,6 +221,17 @@ a {
 
 
 /* HELPERS */
+
+
+
+.page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.main-content {
+    padding-bottom: 5rem;
+}
 
 .rtl {
     direction: rtl;
